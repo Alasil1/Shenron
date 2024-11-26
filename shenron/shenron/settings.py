@@ -59,6 +59,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -87,7 +88,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "Movies",
         "USER": "root",
-        "PASSWORD": "omar3322",
+        "PASSWORD": "MYSQL80202201502",
         "HOST": "localhost",  # Set to "localhost" if the database is on the same machine
         "PORT": "3306",  # Set to "3306" if using the default MySQL port
     }
