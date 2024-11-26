@@ -6,7 +6,6 @@ from .models import Movie
 
 def movie(request, movie_id):
     movie = Movie.objects.get(pk=movie_id)
-    # movies=movies['id'][:10
     return render(request, 'movie.html', {'movie': movie})
 
 def all_movies(request):

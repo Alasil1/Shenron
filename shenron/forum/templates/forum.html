@@ -1,0 +1,31 @@
+{#<!-- forum.html -->#}
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Forum</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Forum</h1>#}
+{#    <ul>#}
+{#        {% for post in posts %}#}
+{#            <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> by {{ post.author }}</li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</body>#}
+{#</html>#}
+
+<!-- forum.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forum</title>
+</head>
+<body>
+    <h1>Forum</h1>
+    <ul>
+        {% for topic in topics %}
+            <li><a href="{% url 'topic_detail' topic.id %}">{{ topic.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

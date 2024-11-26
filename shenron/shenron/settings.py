@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'MoviePage',
     'rest_framework',
+    'forum',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = "shenron.urls"
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "shenron" / "static",
 ]
 
 TEMPLATES = [
@@ -88,7 +89,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "Movies",
         "USER": "root",
-        "PASSWORD": "MYSQL80202201502",
+        "PASSWORD": "omar3322",
         "HOST": "localhost",  # Set to "localhost" if the database is on the same machine
         "PORT": "3306",  # Set to "3306" if using the default MySQL port
     }
