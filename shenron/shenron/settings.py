@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'MoviePage',
     'rest_framework',
+    'favourite_list',
 ]
 
 MIDDLEWARE = [
@@ -85,9 +86,9 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "Movies",
+        "NAME": "shenron",
         "USER": "root",
-        "PASSWORD": "omar3322",
+        "PASSWORD": "412130",
         "HOST": "localhost",  # Set to "localhost" if the database is on the same machine
         "PORT": "3306",  # Set to "3306" if using the default MySQL port
     }
