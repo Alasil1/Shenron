@@ -5,9 +5,8 @@ from MoviePage.models import Movie
 User = get_user_model()
 
 class Favourites(models.Model):
-    list_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favourites')
-    movies = models.ManyToManyField(Movie, blank=True, related_name='favourited_by')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='favourites')
+    movies = models.ManyToManyField(Movie, related_name='favourited_by', blank=True)
 
     def __str__(self):
-        return f"Favourites List for {self.user.username}"
+        return f"{self.user.username}'s Favourite List"

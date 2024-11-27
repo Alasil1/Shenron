@@ -1,29 +1,31 @@
-
-from django.contrib.auth.decorators import login_required
-from .models import Favourites
-from MoviePage.models import Movie
-
-# @login_required  
-def favourite_list(request):
-    favourite_list = Favourites.objects.filter(user=request.user).first()  # Get the user's favourite list
-    movies = favourite_list.movies.all() if favourite_list else []  # Fetch all movies if the list exists
-
-    return render(request, 'favourite.html', {
-        'favourite_list': favourite_list,
-        'movies': movies
-    })
+from django.shortcuts import render, get_object_or_404
+from .models import User, Movie,Favourites
 
 
-# @login_required
-# def add_to_favourites(request, movie_id):
-#     movie = get_object_or_404(Movie, id=movie_id) 
-#     Favourite.objects.get_or_create(user=request.user, movie=movie)
-#     return JsonResponse({'success': True, 'message': f'Added {movie.title} to favourites'})
-
-# @login_required
-# def remove_from_favourites(request, movie_id):
+# def add_to_favorites(request, user_id, movie_id):
+#     user = get_object_or_404(User, id=user_id)
 #     movie = get_object_or_404(Movie, id=movie_id)
-#     Favourite.objects.filter(user=request.user, movie=movie).delete()
-#     return JsonResponse({'success': True, 'message': f'Removed {movie.title} from favourites'})
+#     user.favourites.movies.add(movie)
+#     favorite_movies = user.favourites.movies.all()  # Fetch updated favorites
+#     return render(request, 'favourites.html', {'movies': favorite_movies, 'user': user})
 
+from django.shortcuts import redirect
+from .models import User, Movie
 
+def remove_from_favorites(request, user_id, movie_id):
+    try:
+        favourites = Favourites.objects.get(user_id=user_id) 
+        movie = Movie.objects.get(id=movie_id)
+
+        favourites.movies.remove(movie)
+    except User.DoesNotExist:
+        return redirect('error_page')  
+    except Movie.DoesNotExist:
+        return redirect('error_page')  
+
+    return redirect('/favourites')  
+
+def get_favorites(request, user_id = 2):
+    user = get_object_or_404(User, id=user_id)
+    favorite_movies = user.favourites.movies.all()
+    return render(request, 'favourite.html', {'movies': favorite_movies, 'user': user})

@@ -1,22 +1,40 @@
-<!-- favourite_list.html -->
-{% extends 'base.html' %}
-
-{% block content %}
-    <h2>Your Favourite Movies</h2>
-    {% if movies %}
-        <ul>
-            {% for movie in movies %}
-                <li>
-                    <h3>{{ movie.title }}</h3>
-                    <img src="{{ movie.poster_path }}" alt="{{ movie.title }} Poster" width="100" height="150"/>
-                    <p><strong>Duration:</strong> {{ movie.runtime }} minutes</p>
-                    <p><strong>Release Year:</strong> {{ movie.release_date|date:"Y" }}</p>
-                    <p>{{ movie.overview }}</p>
-                    <a href="{% url 'remove_from_favourites' movie.id %}">Remove from Favourites</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No movies in your favourites list yet.</p>
-    {% endif %}
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username }}'s Favorites</title>
+    <link rel="stylesheet" href="{% static 'all_movies.css' %}">
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="div">
+        <div class="buttons-container">
+          <a href="/"><button class="button">Home</button></a>
+          <a href="/movies/"><div class="text-button">Movies</div></a>
+          <a href="/favourites/{{ user.id }}/"><div class="text-button">Favourites</div></a>
+          <a href="/forums/"><div class="text-button">Forums</div></a>
+        </div>
+        <h1>{{ user.username }}'s Favorite Movies</h1>
+        {% if movies %}
+          {% for movie in movies %}
+            <div class="movie-card">
+              <img class="movie-poster" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}">
+              <div class="movie-info">
+                <h2>{{ movie.title }}</h2>
+                <p>Release Year: {{ movie.release_date.year }}</p>
+                <p>Duration: {{ movie.runtime }} minutes</p>
+                <a href="{% url 'remove_from_favorites' user_id=user.id movie_id=movie.id %}">
+                    <button class="remove-button">Remove</button>
+                </a>
+                </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No favorite movies yet! Add some!</p>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
