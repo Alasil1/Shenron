@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'MoviePage',
     'rest_framework',
     'forum',
+    'favourite_list',
 ]
 
 MIDDLEWARE = [
