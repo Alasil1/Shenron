@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'user',
+    'MoviePage',
     'rest_framework',
+    'forum',
+    'favourite_list',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +56,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "shenron.urls"
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "shenron" / "static",
+]
 
 TEMPLATES = [
     {
@@ -80,7 +88,7 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "movies",
+        "NAME": "Movies",
         "USER": "root",
         "PASSWORD": "omar3322",
         "HOST": "localhost",  # Set to "localhost" if the database is on the same machine

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Shenron }}</title>
+    <link rel="stylesheet" href="{% static 'all_movies.css' %}">
+  </head>
+  <body>
+    <div class="desktop">
+      <div class="div">
+        <div class="buttons-container">
+          <button class="button"><div class="text">Home</div></button>
+          <div class="text-button">Movies</div>
+          <div class="text-button">Favourites</div>
+          <div class="text-button">Forums</div>
+        </div>
+        <img class="img" src="img/buttons-container.svg" />
+        <div class="text-xl"><div class="example">Shenron</div></div><br><br><br><br><br><br><br><br>
+        {% for movie in movies %}
+            <div class="reacher">
+              <div class="frame">
+                <div class="frame-2">
+                  <div class="frame-3">
+                    <div class="frame-2"><a href="{{movie.id}}/"><img class="rectangle" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}" /></a>"</div>
+                    <div class="frame-4">
+                      <div class="frame-5">
+                        <img class="cib-imdb" src="img/cib-imdb.svg" />
+                        <div class="text-wrapper">Rating: {{ movie.vote_average }}</div>
+                      </div>
+                      <div class="frame-6">
+                        <img class="zondicons-time" src="img/zondicons-time.svg" />
+                        <div class="text-wrapper-2">Duration: {{ movie.runtime }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="div-wrapper"><div class="text-wrapper-3">{{ movie.title }}</div></div>
+          </div>
+        </div><br><br><br><br>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
