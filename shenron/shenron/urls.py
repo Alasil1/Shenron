@@ -23,6 +23,6 @@ from MoviePage import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("user.urls")),
-    path('movies/', views.movie, name='movie_list'),
+    path('movies/', include('MoviePage.urls'))
     path('favourites/', include('favourite_list.urls')),  
 ]
