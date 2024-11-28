@@ -9,8 +9,8 @@
 .desktop {
   background-color: #303030;
   display: flex;
-  flex-direction: column; /* Change row to column for vertical stacking */
-  align-items: center; /* Center horizontally */
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
@@ -19,7 +19,7 @@
   width: 1440px;
   position: relative;
   display: flex;
-  flex-direction: column; /* Ensure child elements stack vertically */
+  flex-direction: column;
   align-items: center;
 }
 
