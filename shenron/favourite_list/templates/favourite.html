@@ -4,37 +4,86 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user.username }}'s Favorites</title>
-    <link rel="stylesheet" href="{% static 'all_movies.css' %}">
+    <title>Shenron - Favourites</title>
+    <link rel="stylesheet" href="{% static 'list.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   </head>
   <body>
-    <div class="desktop">
-      <div class="div">
-        <div class="buttons-container">
-          <a href="/"><button class="button">Home</button></a>
-          <a href="/movies/"><div class="text-button">Movies</div></a>
-          <a href="/favourites/{{ user.id }}/"><div class="text-button">Favourites</div></a>
-          <a href="/forums/"><div class="text-button">Forums</div></a>
-        </div>
-        <h1>{{ user.username }}'s Favorite Movies</h1>
-        {% if movies %}
-          {% for movie in movies %}
-            <div class="movie-card">
-              <img class="movie-poster" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}">
-              <div class="movie-info">
-                <h2>{{ movie.title }}</h2>
-                <p>Release Year: {{ movie.release_date.year }}</p>
-                <p>Duration: {{ movie.runtime }} minutes</p>
-                <a href="{% url 'remove_from_favorites' user_id=user.id movie_id=movie.id %}">
-                    <button class="remove-button">Remove</button>
-                </a>
-                </div>
-            </div>
-          {% endfor %}
-        {% else %}
-          <p>No favorite movies yet! Add some!</p>
-        {% endif %}
+    <!-- Header Section -->
+    <header class="navbar">
+      <!-- Shenron Logo -->
+      <div class="logo" style="color: rgb(255, 255, 255); font-size: 30px; font-weight: bold;">
+        <span>Shenron</span>
       </div>
-    </div>
+
+      <!-- Navigation Bar -->
+      <div class="buttons-container" style="display: flex; align-items: center; gap: 30px; margin-top: 10px;">
+        <button class="button">
+          <a href="/movies" style="text-decoration: none; color: #BFBFBF;">Home</a>
+        </button>
+        <div class="text-button">
+          <a href="/movies" style="text-decoration: none; color: #BFBFBF;">Movies</a>
+        </div>
+        <div class="text-button active">
+          <a href="/favourites" style="text-decoration: none; color: rgb(255, 255, 255);">Favourites</a>
+        </div>
+        <div class="text-button">
+          <a href="/forums" style="text-decoration: none; color: #BFBFBF;">Forums</a>
+        </div>
+      </div>
+
+      <!-- Icons Section -->
+      <div class="icon-container">
+        <div class="icon search-icon">
+          <i class="material-icons">search</i>
+        </div>
+        <div class="icon notification-icon">
+          <i class="material-icons">notifications</i>
+          <span class="badge">7</span>
+        </div>
+        <a href="/login" class="signin-link">Sign in</a>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <h1>{{ user.username }}'s Favoruite Movies</h1>
+      {% if movies %}
+      <div class="movie-container">
+        {% for movie in movies %}
+        <div class="movie-card">
+          <!-- Movie Details -->
+          <a href="/movies/{{ movie.id }}/" style="text-decoration: none; color: inherit;">
+            <div class="movie-hover">
+              <img class="movie-poster" src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
+              <div class="movie-info">
+                <p>{{ movie.overview }}</p>
+                <p>Genre: {{ movie.genre }}</p>
+                <p>Duration: {{ movie.runtime }} min</p>
+                <p>Release Year: {{ movie.release_date.year }}</p>
+              </div>
+            </div>
+          </a>
+          <div class="movie-details">
+             <span>{{ movie.title }}</span> | <span>{{ movie.runtime }} min</span> | <span>{{ movie.release_date.year }}</span>
+          </div>
+
+          <!-- Remove Button -->
+          <form method="POST" action="/favourites/remove/{{ user.id }}/{{ movie.id }}/">
+            {% csrf_token %}
+            <button type="submit" class="remove-button">Remove</button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No favourite movies yet! Add some!</p>
+      {% endif %}
+    </main>
+
+    <script src="{% static 'movies.js' %}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   </body>
 </html>
