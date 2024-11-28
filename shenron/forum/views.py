@@ -1,13 +1,21 @@
 # views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Topic
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, TopicForm
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def forum(request):
     topics = Topic.objects.all()
-    return render(request, 'forum.html', {'topics': topics})
+    if request.method == 'POST':
+        form = TopicForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forum')
+    else:
+        form = TopicForm()
+
+    return render(request, 'forum.html', {'topics': topics, 'form': form})
 
 
 # forum/views.py
