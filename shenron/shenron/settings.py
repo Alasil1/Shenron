@@ -24,7 +24,8 @@ SECRET_KEY = "django-insecure-&)=v+fh8&*@+b&k3cy&#1xl+-i-g(w6!q23x$z$20#@v&rs#v$
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 ALLOWED_HOSTS = []
 
 
@@ -57,10 +58,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "shenron.urls"
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "shenron" / "static",
-]
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "shenron" / "static",
+# ]
 
 TEMPLATES = [
     {

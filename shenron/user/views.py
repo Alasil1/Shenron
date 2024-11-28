@@ -3,19 +3,29 @@ from django.shortcuts import render,redirect
 from .models import User
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login, authenticate
-from django.contrib.auth.decorators import login_required
 
-# @login_required(login_url='/login')
+
 def create_user_view(request):
+    if request.user.is_authenticated:
+        return redirect('/movies')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
-        # phone = request.POST['phone']
-        User.CreateUser(username, password, email)
-        return HttpResponse("success")
+        if User.objects.filter(username=username).exists():
+            return render(request, 'create_user.html',
+                          {'error': 'Username is already taken. Please choose another one.'})
+        if User.objects.filter(email=email).exists():
+            return render(request, 'create_user.html',
+                          {'error': 'Email is already taken. Please use a different email.'})
+        user=User.CreateUser(username, password, email)
+        print(user)
+        auth_login(request,user)
+        return redirect('/movies')
     return render(request, 'create_user.html')
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('/movies')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -25,6 +35,7 @@ def login(request):
             next_url = request.POST.get('next', '/movies')
             return redirect(next_url)
         else:
-            return HttpResponse("failure")
+            return render(request, 'login.html',
+                          {'error': 'Username or password is wrong, please try again.'})
     next_url = request.GET.get('next', '/movies/')
     return render(request, 'login.html', {'next': next_url})
