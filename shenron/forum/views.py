@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 def forum(request):
     topics = Topic.objects.all()
     return render(request, 'forum.html', {'topics': topics})
-@login_required
+@login_required(login_url='login')
 def topic_detail(request, topic_id):
     topic = get_object_or_404(Topic, id=topic_id)
     posts = topic.posts.all()

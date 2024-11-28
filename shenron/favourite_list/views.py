@@ -25,7 +25,7 @@ def remove_from_favorites(request, user_id, movie_id):
 
     return redirect('/favourites')  
 
-def get_favorites(request, user_id = 2):
-    user = get_object_or_404(User, id=user_id)
+def get_favorites(request):
+    user = get_object_or_404(User, id=request.user.id)
     favorite_movies = user.favourites.movies.all()
     return render(request, 'favourite.html', {'movies': favorite_movies, 'user': user})

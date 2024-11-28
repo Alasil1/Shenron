@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'forum',
     'favourite_list',
 ]
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -91,8 +91,8 @@ DATABASES = {
         "NAME": "Movies",
         "USER": "root",
         "PASSWORD": "omar3322",
-        "HOST": "localhost",  # Set to "localhost" if the database is on the same machine
-        "PORT": "3306",  # Set to "3306" if using the default MySQL port
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 
