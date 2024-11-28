@@ -8,12 +8,34 @@ from django.contrib.auth.decorators import login_required
 def forum(request):
     topics = Topic.objects.all()
     return render(request, 'forum.html', {'topics': topics})
+
+
+# forum/views.py
 @login_required(login_url='login')
 def topic_detail(request, topic_id):
     topic = get_object_or_404(Topic, id=topic_id)
     posts = topic.posts.all()
-    return render(request, 'topic_detail.html', {'topic': topic, 'posts': posts})
 
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.topic = topic
+            post.author = request.user
+            post.save()
+            return redirect('topic_detail', topic_id=topic.id)
+    else:
+        form = PostForm()
+
+    return render(request, 'topic_detail.html', {'topic': topic, 'posts': posts, 'form': form})
+
+@login_required(login_url='login')
+def create_topic(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        topic = Topic.objects.create(name=name)
+        return redirect('forum')
+    return render(request, 'create_topic.html')
 @login_required(login_url='login')
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
