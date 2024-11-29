@@ -23,4 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("user.urls")),
     path('shenron/', include('MoviePage.urls')),
+    path('forum/', include('forum.urls'), name='forum'),
+    path('favourites/', include('favourite_list.urls')),
 ]

@@ -1,0 +1,15 @@
+<!-- topic_detail.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ topic.name }}</title>
+</head>
+<body>
+    <h1>{{ topic.name }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> by {{ post.author }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
