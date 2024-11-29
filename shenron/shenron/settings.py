@@ -24,7 +24,8 @@ SECRET_KEY = "django-insecure-&)=v+fh8&*@+b&k3cy&#1xl+-i-g(w6!q23x$z$20#@v&rs#v$
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
 ALLOWED_HOSTS = []
 
 
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     'forum',
     'favourite_list',
 ]
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -57,10 +58,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "shenron.urls"
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "shenron" / "static",
-]
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "shenron" / "static",
+# ]
 
 TEMPLATES = [
     {
@@ -91,8 +92,8 @@ DATABASES = {
         "NAME": "Movies",
         "USER": "root",
         "PASSWORD": "omar3322",
-        "HOST": "localhost",  # Set to "localhost" if the database is on the same machine
-        "PORT": "3306",  # Set to "3306" if using the default MySQL port
+        "HOST": "localhost",
+        "PORT": "3306",
     }
 }
 

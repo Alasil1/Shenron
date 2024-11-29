@@ -1,18 +1,84 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Shenron</title>
+    <style>
+        body {
+            background-color: #222;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 300px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #b00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .signup-link {
+            margin-top: 10px;
+            font-size: 0.8em;
+            text-align: center;
+        }
+
+        .signup-link a {
+            color: #b00;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
+    <h1>Shenron</h1>
     <form method="post">
         {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <input type="hidden" name="next" value="{{ next }}">
+        <!-- Keep this for redirect after login -->
+        <input type="text" id="username" name="username" placeholder="username" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    <div class="signup-link">
+        You don't have an account? <a href="{% url 'signup' %}">SignUp</a>
+    </div>
 </body>
 </html>
