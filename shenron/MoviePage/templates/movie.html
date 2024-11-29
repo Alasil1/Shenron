@@ -9,22 +9,22 @@
 </head>
 <body>
     <div class="header-container">
-        <header class="header">
-            <a href="{% url 'home' %}" class="logo">Shenron</a>
-  
-            <nav class="navbar">
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'movies' %}">Movies</a>
-            <a href="{% url 'favourite_list' %}">Favourites</a>
-            <a href="{% url 'forum' %}">Forums</a>
-            </nav>
-            {% if user.is_authenticated %}
-            <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
-            {% else %}
-            <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
-            {% endif %}
-        </header>
-    </div>
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
+
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          </nav>
+          {% if user.is_authenticated %}
+          <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+          {% else %}
+          <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+          {% endif %}
+      </header>
+  </div>
         <div class="backdrop-container">
             <img class="backdrop" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="{{ movie.title }} Backdrop">
         </div>
@@ -55,7 +55,16 @@
                 {% else %}
                     <p><strong>Adult:</strong> No</p>
                 {% endif %}
-
+           <h2>Trailers</h2>
+                <ul class="trailers-list">
+                    {% for trailer, image in trailers %}
+                        <li class="trailer-item">
+                            <a href="{{ trailer }}" target="_blank">
+                                <img src="{{ image }}" alt="Trailer Thumbnail">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             {% if movie in user.favourites.movies.all %}
                 <button class="btn btn-warning" disabled>Already in Favorites</button>
             {% else %}

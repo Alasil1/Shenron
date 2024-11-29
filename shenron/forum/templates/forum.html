@@ -1,21 +1,40 @@
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Forum</title>
+    <link rel="stylesheet" href="{% static 'forum.css' %}">
+
 </head>
 <body>
+    <div class="header-container">
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          </nav>
+
+          <a class="logout" href="{% url 'logout' %}"><button class="button2">logout</button></a>
+      </header>
+  </div>
     <h1>Forum</h1>
     <ul>
         {% for topic in topics %}
-            <li><a href="{% url 'topic_detail' topic.id %}">{{ topic.name }}</a></li>
+            <li>
+    <a href="{% url 'topic_detail' topic.id %}">{{ topic.name }}</a>
+    - Created by {{ topic.createdby.username }}
+</li>
         {% endfor %}
     </ul>
 
     <h2>Create a New Topic</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <input type="text" name="name" placeholder="Topic Name" required>
         <button type="submit">Create Topic</button>
     </form>
 </body>

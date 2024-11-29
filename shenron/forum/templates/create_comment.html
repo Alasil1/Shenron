@@ -1,14 +1,18 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create Comment</title>
 </head>
 <body>
-    <h1>Create Comment for "{{ post.title }}"</h1>
+    <h1>Create Comment</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <textarea name="comment" placeholder="Comment Content" required></textarea>
+        <select name="post" required>
+            {% for post in posts %}
+                <option value="{{ post.id }}">{{ post.title }}</option>
+            {% endfor %}
+        </select>
         <button type="submit">Create Comment</button>
     </form>
 </body>
