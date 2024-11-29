@@ -38,7 +38,7 @@
           <i class="material-icons">notifications</i>
           <span class="badge">7</span>
         </div>
-        <a href="/login" class="signin-link">Sign in</a>
+        <a href="{% url 'logout' %}" class="signin-link">log out</a>
       </div>
     </header>
 
@@ -76,9 +76,6 @@
       <p>No favourite movies yet! Add some!</p>
       {% endif %}
     </main>
-
-    <script src="{% static 'movies.js' %}"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
   </body>
 </html>

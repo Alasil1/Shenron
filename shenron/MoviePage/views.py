@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.shortcuts import render
 from .models import Movie
 import requests
-from PIL import Image
-from io import BytesIO
-from colorthief import ColorThief
+# from PIL import Image
+# from io import BytesIO
+# from colorthief import ColorThief
 def movie(request, movie_id):
     movie = Movie.objects.get(pk=movie_id)
     # poster_path = movie.poster_path
