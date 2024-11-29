@@ -7,7 +7,7 @@ from django.contrib.auth import login as auth_login, authenticate
 
 def create_user_view(request):
     if request.user.is_authenticated:
-        return redirect('/movies')
+        return redirect('/shenron')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -21,21 +21,21 @@ def create_user_view(request):
         user=User.CreateUser(username, password, email)
         print(user)
         auth_login(request,user)
-        return redirect('/movies')
+        return redirect('/shenron')
     return render(request, 'create_user.html')
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/movies')
+        return redirect('/shenron')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = User.Login(request,username, password)
         if user:
             auth_login(request, user)
-            next_url = request.POST.get('next', '/movies')
+            next_url = request.POST.get('next', '/shenron')
             return redirect(next_url)
         else:
             return render(request, 'login.html',
                           {'error': 'Username or password is wrong, please try again.'})
-    next_url = request.GET.get('next', '/movies/')
+    next_url = request.GET.get('next', '/shenron/')
     return render(request, 'login.html', {'next': next_url})
