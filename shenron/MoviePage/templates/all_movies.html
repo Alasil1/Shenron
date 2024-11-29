@@ -1,5 +1,15 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -11,7 +21,7 @@
     <div class="desktop">
       <div class="div">
         <div class="buttons-container">
-          <button class="button"><div class="text">Home</div></button>
+          <button class="button"><a href="{% url 'home' %}"><div class="text">Home</div></a></button>
           <div class="text-button">Movies</div>
           <div class="text-button">Favourites</div>
           <div class="text-button">Forums</div>
@@ -26,16 +36,17 @@
                     <div class="frame-2"><a href="{{movie.id}}/"><img class="rectangle" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}" /></a>"</div>
                     <div class="frame-4">
                       <div class="frame-5">
-                        <img class="cib-imdb" src="img/cib-imdb.svg" />
+                        <img class="zondicons-time" src="{% static 'logo/gold-star.png' %}" />
                         <div class="text-wrapper">Rating: {{ movie.vote_average }}</div>
                       </div>
                       <div class="frame-6">
-                        <img class="zondicons-time" src="img/zondicons-time.svg" />
+                        <img class="zondicons-time" src="{% static 'logo/white_clock.png' %}" />
                         <div class="text-wrapper-2">Duration: {{ movie.runtime }}</div>
                       </div>
                     </div>
                   </div>
                 </div>
+                  <br><br>
               <div class="div-wrapper"><div class="text-wrapper-3">{{ movie.title }}</div></div>
           </div>
         </div><br><br><br><br>
