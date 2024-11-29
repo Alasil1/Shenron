@@ -22,5 +22,5 @@ from MoviePage import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("user.urls")),
-    path('movies/', include('MoviePage.urls')),
+    path('shenron/', include('MoviePage.urls')),
 ]

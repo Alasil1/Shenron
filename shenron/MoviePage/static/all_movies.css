@@ -11,7 +11,6 @@
   display: flex;
   flex-direction: column; /* Change row to column for vertical stacking */
   align-items: center; /* Center horizontally */
-  width: 100%;
 }
 
 .desktop .div {
@@ -159,7 +158,7 @@
   justify-content: space-between;
   padding: 4px 24px;
   align-self: stretch;
-  width: 100%;
+  width: 1243px;
   margin-top: -4px;
   background-color: #2e2e2e;
   border-radius: 8px;
@@ -183,8 +182,8 @@
 
 .desktop .cib-imdb {
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 74px;
+  height: 74px;
 }
 
 .desktop .text-wrapper {
@@ -211,8 +210,8 @@
 
 .desktop .zondicons-time {
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 74px;
+  height: 74px;
 }
 
 .desktop .text-wrapper-2 {

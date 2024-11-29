@@ -12,3 +12,6 @@ def movie(request, movie_id):
 def all_movies(request):
     movies = Movie.objects.filter(vote_count__gt=1000).order_by('-vote_average')[0:20]
     return render(request, 'all_movies.html', {'movies': movies})
+
+def home(request):
+    return render(request, 'home.html')
