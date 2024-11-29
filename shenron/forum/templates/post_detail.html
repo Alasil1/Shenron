@@ -1,4 +1,4 @@
-<!-- post_detail.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +8,26 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
     <p>by {{ post.author }} on {{ post.created_at }}</p>
+
+    {% if post.author == user %}
+        <form method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" name="delete_post">Delete Post</button>
+        </form>
+    {% endif %}
+
     <h2>Comments</h2>
     <ul>
         {% for comment in comments %}
-            <li>{{ comment.content }} by {{ comment.author }} on {{ comment.created_at }}</li>
+            <li>{{ comment.content }} by {{ comment.author }}</li>
         {% endfor %}
     </ul>
-    <h2>Add a comment</h2>
+
+    <h2>Create a New Comment</h2>
     <form method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
-        <button type="submit">Add Comment</button>
+        <button type="submit">Create Comment</button>
     </form>
 </body>
 </html>

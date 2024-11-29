@@ -21,10 +21,10 @@
     <div class="desktop">
       <div class="div">
         <div class="buttons-container">
-          <button class="button"><a href="{% url 'home' %}"><div class="text">Home</div></a></button>
-          <div class="text-button">Movies</div>
-          <div class="text-button">Favourites</div>
-          <div class="text-button">Forums</div>
+          <div class="text-button"><a href="{% url 'home' %}"><div class="text">Home</div></a></div>
+          <div class="text-button"><a href="{% url 'movies' %}"><div class="text">Movies</div></a></div>
+          <div class="text-button"><a href="{% url 'favourite_list' %}"><div class="text">Favourites</div></a></div>
+          <div class="text-button"><a href="{% url 'forum' %}"><div class="text">Forums</div></a></div>
         </div>
         <img class="img" src="img/buttons-container.svg" />
         <div class="text-xl"><div class="example">Shenron</div></div><br><br><br><br><br><br><br><br>
@@ -33,7 +33,7 @@
               <div class="frame">
                 <div class="frame-2">
                   <div class="frame-3">
-                    <div class="frame-2"><a href="{{movie.id}}/"><img class="rectangle" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}" /></a>"</div>
+                    <div class="frame-2"><a href="{{movie.id}}/"><img class="rectangle" src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }}" /></a></div>
                     <div class="frame-4">
                       <div class="frame-5">
                         <img class="zondicons-time" src="{% static 'logo/gold-star.png' %}" />
@@ -46,8 +46,9 @@
                     </div>
                   </div>
                 </div>
-                  <br><br>
-              <div class="div-wrapper"><div class="text-wrapper-3">{{ movie.title }}</div></div>
+                  <br>
+              <button class="titlebutton">{{ movie.title }}
+              </button>
           </div>
         </div><br><br><br><br>
         {% endfor %}

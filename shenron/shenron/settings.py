@@ -58,10 +58,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "shenron.urls"
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "shenron" / "static",
-# ]
 
 TEMPLATES = [
     {

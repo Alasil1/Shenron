@@ -6,6 +6,12 @@
   --black-12: rgba(31, 31, 31, 1);
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #303030;
+}
+
 .desktop {
   background-color: #303030;
   display: flex;
@@ -19,78 +25,23 @@
 .desktop .div {
   background-color: #303030;
   width: 1440px;
-  height: 1695px;
+  height: 850px;
   position: relative;
-}
-
-.desktop .buttons-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 30px;
-  padding: 10px 40px 10px 10px;
-  position: absolute;
-  top: -1252px;
-  left: 514px;
-  background-color: var(--black-06);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 4px solid;
-  border-color: var(--black-12);
-}
-
-.desktop .button {
-  all: unset;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  position: relative;
-  flex: 0 0 auto;
-  background-color: var(--black-10);
-  border-radius: 8px;
-  border: 1px solid;
-  border-color: var(--black-10);
-}
-
-.desktop .text {
-  position: relative;
-  width: fit-content;
-  margin-top: -1.00px;
-  font-family: "Manrope-Medium", Helvetica;
-  font-weight: 500;
-  color: var(--absolutewhite);
-  font-size: 18px;
-  letter-spacing: 0;
-  line-height: 27px;
-  white-space: nowrap;
-}
-
-.desktop .text-button {
-  position: relative;
-  width: fit-content;
-  font-family: "Manrope-Regular", Helvetica;
-  font-weight: 400;
-  color: var(--grey-75);
-  font-size: 18px;
-  letter-spacing: 0;
-  line-height: 27px;
-  white-space: nowrap;
 }
 
 .desktop .example {
   position: absolute;
   width: 1000px;
   height: 351px;
-  top: 58px;
+  top: 20px;
   font-family: "Impact-Regular", Helvetica;
   font-weight: 400;
   color: #ca1542;
-  font-size: 128px;
+  font-size: 72px;
   text-align: center;
-  letter-spacing: 7.68px;
+  letter-spacing: 5px;
   left: calc(50% - 500px);
-  line-height: 77px;
+  line-height: 40px;
 }
 
 .desktop .state-layer-wrapper {
@@ -102,8 +53,8 @@
   justify-content: center;
   gap: 8px;
   position: absolute;
-  top: 1381px;
-  left: 497px;
+  top: 670px;
+  left: 512px;
   border-radius: 100px;
   overflow: hidden;
 }
@@ -138,9 +89,72 @@
 
 .desktop .whatsapp-image {
   position: absolute;
-  width: 854px;
-  height: 745px;
-  top: 475px;
-  left: 293px;
+  width: 600px;
+  height: 500px;
+  top: 160px;
+  left: 29%;
   object-fit: cover;
+}
+
+ .titlebutton {
+    padding: 15px 20px;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+    position: relative;
+    color: #f0f0f0 !important;
+    z-index: 1;
+    width: 250px;
+    height: 100px;
+  }
+
+  .titlebutton::after,
+  .titlebutton::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -99999;
+    transition: all .4s;
+  }
+
+  .titlebutton::before {
+    transform: translate(0%, 0%);
+    width: 100%;
+    height: 100%;
+    background: #be123c;
+    border-radius: 10px;
+  }
+
+  .titlebutton::after {
+    transform: translate(10px, 10px);
+    width: 35px;
+    height: 35px;
+    background: #ffffff15;
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+  }
+
+  .titlebutton:hover::before {
+    transform: translate(5%, 20%);
+    width: 110%;
+    height: 110%;
+  }
+
+  .titlebutton:hover::after {
+    border-radius: 10px;
+    transform: translate(0, 0);
+    width: 100%;
+    height: 100%;
+  }
+
+  .titlebutton:active::after {
+    transition: 0s;
+    transform: translate(0, 5%);
+  }
+
+.titlebutton a,
+.titlebutton a {
+  color: inherit;
+  text-decoration: none;
 }

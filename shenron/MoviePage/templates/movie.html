@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ movie.title }}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">  </head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
 <body>
 
-    <div class="movie-container">
+        <div class="backdrop-container">
+            <img class="backdrop" src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="{{ movie.title }} Backdrop">
+        </div>
         <div class="movie-poster">
             <img src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
         </div>
@@ -19,7 +22,6 @@
                 <span>Release Date: {{ movie.release_date }}</span>
                 <span>Runtime: {{ movie.runtime }} minutes</span>
                 <span>Status: {{ movie.status }}</span>
-
             </div>
 
             <h2>Overview</h2>
@@ -44,14 +46,7 @@
                 <a href="{% url 'add_to_favorites' movie.id %}" class="btn btn-warning">Add to Favorites</a>
             {% endif %}
             </div>
-
-            <h2>Backdrop</h2>
-            <img class= "backdrop"src="https://image.tmdb.org/t/p/original{{ movie.backdrop_path }}" alt="{{ movie.title }} Backdrop">
-
         </div>
-    </div>
 
-
-    </body>
+</body>
 </html>
-
