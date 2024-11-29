@@ -9,7 +9,7 @@
 <body>
 
 </body>
-</html>>
+</html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -18,16 +18,27 @@
     <link rel="stylesheet" href="{% static 'all_movies.css' %}">
   </head>
   <body>
+
+    <div class="header-container">
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
+
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          </nav>
+          {% if user.is_authenticated %}
+          <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+          {% else %}
+          <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+          {% endif %}
+      </header>
+  </div>
     <div class="desktop">
       <div class="div">
-        <div class="buttons-container">
-          <div class="text-button"><a href="{% url 'home' %}"><div class="text">Home</div></a></div>
-          <div class="text-button"><a href="{% url 'movies' %}"><div class="text">Movies</div></a></div>
-          <div class="text-button"><a href="{% url 'favourite_list' %}"><div class="text">Favourites</div></a></div>
-          <div class="text-button"><a href="{% url 'forum' %}"><div class="text">Forums</div></a></div>
-        </div>
-        <img class="img" src="img/buttons-container.svg" />
-        <div class="text-xl"><div class="example">Shenron</div></div><br><br><br><br><br><br><br><br>
+
         {% for movie in movies %}
             <div class="reacher">
               <div class="frame">

@@ -10,38 +10,20 @@
 
   </head>
   <body>
-    <header class="navbar">
-      <div class="logo" style="color: rgb(255, 255, 255); font-size: 30px; font-weight: bold;">
-        <span>Shenron</span>
-      </div>
+    <div class="header-container">
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
 
-      <div class="buttons-container" style="display: flex; align-items: center; gap: 30px; margin-top: 10px;">
-        <button class="button">
-          <a href="{% url 'home' %}" style="text-decoration: none; color: #BFBFBF;">Home</a>
-        </button>
-        <div class="text-button">
-          <a href="{% url 'movies' %}" style="text-decoration: none; color: #BFBFBF;">Movies</a>
-        </div>
-        <div class="text-button active">
-          <a href="/favourites" style="text-decoration: none; color: rgb(255, 255, 255);">Favourites</a>
-        </div>
-        <div class="text-button">
-          <a href="/forum" style="text-decoration: none; color: #BFBFBF;">Forums</a>
-        </div>
-      </div>
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          </nav>
 
-      <div class="icon-container">
-        <div class="icon search-icon">
-          <i class="material-icons">search</i>
-        </div>
-        <div class="icon notification-icon">
-          <i class="material-icons">notifications</i>
-          <span class="badge">7</span>
-        </div>
-        <a href="{% url 'logout' %}" class="signin-link">log out</a>
-      </div>
-    </header>
-
+          <a class="logout" href="{% url 'logout' %}"><button class="button2">logout</button></a>
+      </header>
+  </div>
     <main>
       <h1>{{ user.username }}'s Favoruite Movies</h1>
       {% if movies %}
