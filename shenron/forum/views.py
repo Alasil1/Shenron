@@ -50,6 +50,9 @@ def post_detail(request, post_id):
     comments = post.comments.all()
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
+        if 'delete_post' in request.POST and post.author == request.user:
+            post.delete()
+            return redirect('forum')
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post

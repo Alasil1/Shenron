@@ -58,10 +58,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "shenron.urls"
 
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "shenron" / "static",
-# ]
 
 TEMPLATES = [
     {
@@ -91,7 +87,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "Movies",
         "USER": "root",
-        "PASSWORD": "MYSQL80202201502",
+        "PASSWORD": "omar3322",
         "HOST": "localhost",
         "PORT": "3306",
     }
