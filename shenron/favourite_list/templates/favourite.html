@@ -10,14 +10,11 @@
 
   </head>
   <body>
-    <!-- Header Section -->
     <header class="navbar">
-      <!-- Shenron Logo -->
       <div class="logo" style="color: rgb(255, 255, 255); font-size: 30px; font-weight: bold;">
         <span>Shenron</span>
       </div>
 
-      <!-- Navigation Bar -->
       <div class="buttons-container" style="display: flex; align-items: center; gap: 30px; margin-top: 10px;">
         <button class="button">
           <a href="{% url 'home' %}" style="text-decoration: none; color: #BFBFBF;">Home</a>
@@ -33,7 +30,6 @@
         </div>
       </div>
 
-      <!-- Icons Section -->
       <div class="icon-container">
         <div class="icon search-icon">
           <i class="material-icons">search</i>
@@ -46,22 +42,22 @@
       </div>
     </header>
 
-    <!-- Main Content -->
     <main>
       <h1>{{ user.username }}'s Favoruite Movies</h1>
       {% if movies %}
       <div class="movie-container">
         {% for movie in movies %}
         <div class="movie-card">
-          <!-- Movie Details -->
-          <a href="/movies/{{ movie.id }}/" style="text-decoration: none; color: inherit;">
+          <a href="/shenron/movies/{{ movie.id }}/" style="text-decoration: none; color: inherit;">
             <div class="movie-hover">
               <img class="movie-poster" src="https://image.tmdb.org/t/p/w200{{ movie.poster_path }}" alt="{{ movie.title }}">
               <div class="movie-info">
-                <p>{{ movie.overview }}</p>
-                <p>Genre: {{ movie.genre }}</p>
+                <p>rating: {{ movie.vote_average }}</p>
+                <p>language: {{ movie.original_language }}</p>
+                <p>Genre: {{ movie.genres }}</p>
                 <p>Duration: {{ movie.runtime }} min</p>
                 <p>Release Year: {{ movie.release_date.year }}</p>
+
               </div>
             </div>
           </a>
@@ -69,7 +65,6 @@
              <span>{{ movie.title }}</span> | <span>{{ movie.runtime }} min</span> | <span>{{ movie.release_date.year }}</span>
           </div>
 
-          <!-- Remove Button -->
           <form method="POST" action="/favourites/remove/{{ user.id }}/{{ movie.id }}/">
             {% csrf_token %}
             <button type="submit" class="remove-button">Remove</button>

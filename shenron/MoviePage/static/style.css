@@ -61,3 +61,18 @@ body {
 h1, h2 {
     color: #ca1542;
 }
+
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    color: white;
+}
+

@@ -39,6 +39,12 @@
                 {% else %}
                     <p><strong>Adult:</strong> No</p>
                 {% endif %}
+
+            {% if movie in user.favourites.movies.all %}
+                <button class="btn btn-warning" disabled>Already in Favorites</button>
+            {% else %}
+                <a href="{% url 'add_to_favorites' movie.id %}" class="btn btn-warning">Add to Favorites</a>
+            {% endif %}
             </div>
         </div>
 

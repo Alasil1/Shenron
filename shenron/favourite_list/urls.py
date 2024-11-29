@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.get_favorites, name='favourite_list'),
-    # path('/add/<int:movie_id>/', views.add_to_favourites, name='add_to_favourites'),
+    path('add/<int:movie_id>/', views.add_to_favorites, name='add_to_favorites'),
     path('remove/<int:user_id>/<int:movie_id>/', views.remove_from_favorites, name='remove_from_favorites'),
 
 ]
