@@ -27,7 +27,7 @@ class Movie(models.Model):
         url = f"https://api.themoviedb.org/3/movie/{self.id}/videos?language=en-US"
         headers = {
             "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ODVlMTBmYTA2MWIwNTFhOTQ2ODBhZGIzMDYwMmNiZSIsIm5iZiI6MTczMjg4NzU1My4zNTQ0OTU1LCJzdWIiOiI2NzFhYjAxMTViZTllODc1OWRhNzBlOTEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.94dfNSwJHOrEgLCQuDgnQfbR2Zy496PE6BqQpRxkpsc"
+            "Authorization": 
         }
         response = requests.get(url, headers=headers)
         data = response.json()
