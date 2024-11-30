@@ -17,7 +17,12 @@
           <a href="{% url 'forum' %}">Forums</a>
           </nav>
 
-          <a class="logout" href="{% url 'logout' %}"><button class="button2">logout</button></a>
+          <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
+            {% if user.is_authenticated %}
+            <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+            {% else %}
+            <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+            {% endif %}</div>
       </header>
   </div>
     <h1>Forum</h1>

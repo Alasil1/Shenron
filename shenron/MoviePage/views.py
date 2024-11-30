@@ -10,9 +10,8 @@ import requests
 def movie(request, movie_id):
     movie = Movie.objects.get(pk=movie_id)
     trailers,images=movie.get_videos()
-    print(images)
+    # print(images)
     trailer_image_pairs = zip(trailers, images)
-
     return render(request, 'movie.html', {'movie': movie, 'trailers':trailer_image_pairs })
 
 def all_movies(request):
