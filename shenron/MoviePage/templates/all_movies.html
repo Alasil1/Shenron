@@ -29,11 +29,12 @@
           <a href="{% url 'favourite_list' %}">Favourites</a>
           <a href="{% url 'forum' %}">Forums</a>
           </nav>
-          {% if user.is_authenticated %}
-          <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
-          {% else %}
-          <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
-          {% endif %}
+          <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
+            {% if user.is_authenticated %}
+            <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+            {% else %}
+            <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+            {% endif %}</div>
       </header>
   </div>
     <div class="desktop">

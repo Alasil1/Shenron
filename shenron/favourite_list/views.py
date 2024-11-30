@@ -8,7 +8,9 @@ def add_to_favorites(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
     favourites, created = Favourites.objects.get_or_create(user=user)
     favourites.movies.add(movie)
-    return render(request, 'movie.html', {'movie': movie})
+    trailers,images=movie.get_videos()
+    trailer_image_pairs = zip(trailers, images)
+    return render(request, 'movie.html', {'movie': movie, 'trailers':trailer_image_pairs })
 
 
 @login_required(login_url='login')

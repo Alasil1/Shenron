@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from MoviePage.models import Movie
-from django.views.decorators.csrf import csrf_protect
-
 from django.db.models import Case, When, Value, IntegerField
 
 
@@ -16,6 +14,7 @@ def search(request):
                     output_field=IntegerField(),
                 )
             ).order_by('-exact_match', '-vote_average')
+
 
             return render(request, 'search.html', {'results': results})
     return render(request, 'search.html')
