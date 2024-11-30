@@ -1,8 +1,6 @@
 # views.py
-from arpeggio.cleanpeg import comment
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Topic
-from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
