@@ -2,8 +2,16 @@ from django.shortcuts import render
 from MoviePage.models import Movie
 from django.db.models import Case, When, Value, IntegerField
 
-
 def search(request):
+    """
+    Handle the search functionality for movies.
+
+    This view processes POST requests containing a search query, filters movies
+    based on the query, and returns the search results.
+
+    :param request: The HTTP request object.
+    :return: Rendered HTML page with search results or an empty search page.
+    """
     if request.method == 'POST':
         query = request.POST.get('q')
         if query:
@@ -15,9 +23,5 @@ def search(request):
                 )
             ).order_by('-exact_match', '-vote_average')
 
-
             return render(request, 'search.html', {'results': results})
     return render(request, 'search.html')
-
-
-
