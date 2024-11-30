@@ -1,108 +1,11 @@
-
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #1e1e1e;
     color: #f0f0f0;
     margin: 0;
-    padding: 20px;
-    line-height: 1.6;
-}
-
-
-h1, h2 {
-    color: #ca1542;
-    margin-bottom: 20px;
-}
-
-
-p {
-    margin-bottom: 15px;
-}
-
-p span {
-    color: #ffc107;
-    font-weight: bold;
-}
-
-
-ul {
-    list-style-type: none;
     padding: 0;
-}
-
-ul li {
-    background-color: #2b2b2b;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-ul li span {
-    color: #ca1542;
-    font-weight: bold;
-}
-
-
-form {
-    margin-top: 20px;
-    background-color: #2b2b2b;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-form textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #333333;
-    border: 1px solid #444444;
-    border-radius: 5px;
-    color: #f0f0f0;
-    resize: vertical;
-}
-
-form textarea::placeholder {
-    color: #888888;
-}
-
-form button {
-    background-color: #ffc107;
-    color: black;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #e0a800;
-    color: white;
-}
-
-
-p.author {
-    color: #ffc107;
-    font-weight: bold;
-}
-
-
-form button[name="delete_post"] {
-    background-color: #dc3545;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-form button[name="delete_post"]:hover {
-    background-color: #c82333;
+    line-height: 1.6;
+    text-align: center;
 }
 
 .header-container {
@@ -239,3 +142,104 @@ form button[name="delete_post"]:hover {
     background-color: #BE123C;
     transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
   }
+
+
+h1 {
+    color: #ca1542;
+    margin: 20px 0;
+}
+
+form {
+    margin: 20px auto;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+form input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+}
+
+form input[type="text"]::placeholder {
+    color: #888;
+}
+
+form button {
+    background-color: #ca1542;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #9d1036;
+}
+
+
+h2 {
+    color: #ffc107;
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+ul li {
+    background-color: #2b2b2b;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+ul li a {
+    color: #ffc107;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+ul li a:hover {
+    color: #e0a800;
+    text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    form input[type="text"] {
+        width: 100%;
+    }
+
+    ul li {
+        padding: 10px;
+    }
+}

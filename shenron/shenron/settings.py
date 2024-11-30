@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'forum',
     'favourite_list',
+    'search',
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
