@@ -20,7 +20,7 @@ def add_to_favorites(request, movie_id):
     return render(request, 'movie.html', {'movie': movie, 'trailers': trailer_image_pairs})
 
 @login_required(login_url='login')
-def remove_from_favorites(request, user_id, movie_id):
+def remove_from_favorites(request, movie_id):
     """
     Remove a movie from the user's favorites.
 
@@ -29,6 +29,7 @@ def remove_from_favorites(request, user_id, movie_id):
     :param movie_id: The ID of the movie to remove from favorites.
     :return: Redirect to the favorites page.
     """
+    user_id=request.user.id
     favourites = Favourites.objects.get(user_id=user_id)
     movie = Movie.objects.get(id=movie_id)
     favourites.movies.remove(movie)

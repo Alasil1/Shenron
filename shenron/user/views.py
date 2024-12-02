@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from .models import User
-from django.http import HttpResponse
 from django.contrib.auth import login as auth_login, logout
 
 def create_user_view(request):
