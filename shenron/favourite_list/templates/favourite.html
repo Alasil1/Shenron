@@ -52,7 +52,7 @@
              <span>{{ movie.title }}</span> | <span>{{ movie.runtime }} min</span> | <span>{{ movie.release_date.year }}</span>
           </div>
 
-          <form method="POST" action="/favourites/remove/{{ user.id }}/{{ movie.id }}/">
+          <form method="POST" action="/favourites/remove/{{ movie.id }}/">
             {% csrf_token %}
             <button type="submit" class="remove-button">Remove</button>
           </form>
