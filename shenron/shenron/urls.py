@@ -26,4 +26,5 @@ urlpatterns = [
     path('forum/', include('forum.urls'), name='forum'),
     path('favourites/', include('favourite_list.urls')),
     path('search/', include("search.urls"), name='search'),
+    path('profile/', include("UserProfile.urls"), name='profile'),
 ]
