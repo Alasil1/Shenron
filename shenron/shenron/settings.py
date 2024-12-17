@@ -86,9 +86,9 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "movies",
+        "NAME": "shenron",
         "USER": "root",
-        "PASSWORD": "omar3322",
+        "PASSWORD": "412130",
         "HOST": "localhost",
         "PORT": "3306",
     }
