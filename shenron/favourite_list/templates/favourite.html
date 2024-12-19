@@ -19,6 +19,7 @@
           <a href="{% url 'movies' %}">Movies</a>
           <a href="{% url 'favourite_list' %}">Favourites</a>
           <a href="{% url 'forum' %}">Forums</a>
+          <a href="{% url 'user_reviews' %}">Reviews</a>
           </nav>
 
           <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
@@ -52,7 +53,7 @@
              <span>{{ movie.title }}</span> | <span>{{ movie.runtime }} min</span> | <span>{{ movie.release_date.year }}</span>
           </div>
 
-          <form method="POST" action="/favourites/remove/{{ user.id }}/{{ movie.id }}/">
+          <form method="POST" action="/favourites/remove/{{ movie.id }}/">
             {% csrf_token %}
             <button type="submit" class="remove-button">Remove</button>
           </form>

@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+
 from .models import Movie
 import requests
 # from PIL import Image

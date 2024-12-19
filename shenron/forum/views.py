@@ -1,11 +1,17 @@
-# views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Topic
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
 
 
 @login_required(login_url='login')
 def forum(request):
+    """
+    Display the forum topics and handle the creation of new topics.
+
+    :param request: The HTTP request object.
+    :return: Rendered HTML page with the list of topics.
+    """
     topics = Topic.objects.all()
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -14,9 +20,16 @@ def forum(request):
             return redirect('forum')
     return render(request, 'forum.html', {'topics': topics})
 
-# forum/views.py
+
 @login_required(login_url='login')
 def topic_detail(request, topic_id):
+    """
+    Display the details of a specific topic and handle the creation of new posts.
+
+    :param request: The HTTP request object.
+    :param topic_id: The ID of the topic to display.
+    :return: Rendered HTML page with the topic details and its posts.
+    """
     topic = get_object_or_404(Topic, id=topic_id)
     posts = topic.posts.all()
     if request.method == 'POST':
@@ -32,14 +45,28 @@ def topic_detail(request, topic_id):
 
 @login_required(login_url='login')
 def create_topic(request):
+    """
+    Handle the creation of a new topic.
+
+    :param request: The HTTP request object.
+    :return: Redirect to the forum page or render the topic creation page.
+    """
     if request.method == 'POST':
         name = request.POST.get('name')
-        createdby=request.user
+        createdby = request.user
         Topic.objects.create(name=name, createdby=createdby)
         return redirect('forum')
     return render(request, 'create_topic.html')
+
 @login_required(login_url='login')
 def post_detail(request, post_id):
+    """
+    Display the details of a specific post and handle the creation of new comments.
+
+    :param request: The HTTP request object.
+    :param post_id: The ID of the post to display.
+    :return: Rendered HTML page with the post details and its comments.
+    """
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.all()
     print(request.user.get_all_permissions())
@@ -47,6 +74,7 @@ def post_detail(request, post_id):
         if 'delete_post' in request.POST and (post.author == request.user or request.user.has_perm('forum.delete_post')):
             post.delete()
             return redirect('forum')
+<<<<<<< HEAD
         if 'delete_comment' in request.POST:
             comment_id = request.POST.get('comment_id')
             comment = get_object_or_404(Comment, id=comment_id)
@@ -56,6 +84,9 @@ def post_detail(request, post_id):
 
             return redirect('post_detail', post_id=post.id)
         comment= request.POST.get('comment')
+=======
+        comment = request.POST.get('comment')
+>>>>>>> 27f55bb87e699e06b04ccab47ca2037fb1858251
         if comment:
             Comment.objects.create(content=comment, author=request.user, post=post)
             return redirect('post_detail', post_id=post.id)
@@ -63,20 +94,31 @@ def post_detail(request, post_id):
 
 @login_required(login_url='login')
 def create_post(request):
-    topics=Topic.objects.all()
+    """
+    Handle the creation of a new post.
+
+    :param request: The HTTP request object.
+    :return: Redirect to the forum page or render the post creation page.
+    """
+    topics = Topic.objects.all()
     if request.method == 'POST':
-        title=request.POST.get('title')
-        content=request.POST.get('content')
-        topic_id=request.POST.get('topic')
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        topic_id = request.POST.get('topic')
         topic = get_object_or_404(Topic, id=topic_id)
         Post.objects.create(title=title, content=content, author=request.user, topic=topic)
         return redirect('forum')
-    return render(request, 'create_post.html' , {'topics': topics})
+    return render(request, 'create_post.html', {'topics': topics})
 
 @login_required(login_url='login')
 def create_comment(request):
+    """
+    Handle the creation of a new comment.
+
+    :param request: The HTTP request object.
+    :return: Redirect to the post detail page or render the comment creation page.
+    """
     posts = Post.objects.all()
-    print(posts)
     if request.method == 'POST':
         comment = request.POST.get('comment_id')
         post_id = request.POST.get('post')

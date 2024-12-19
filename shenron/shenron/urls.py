@@ -18,13 +18,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path,include
-from MoviePage import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("user.urls")),
     path('shenron/', include('MoviePage.urls')),
     path('forum/', include('forum.urls'), name='forum'),
     path('favourites/', include('favourite_list.urls')),
+    path('review/', include('review.urls'), name='review'),
     path('search/', include("search.urls"), name='search'),
     path("", include('admin_moderator.urls')),
+    path('profile/', include("UserProfile.urls"), name='profile'),
 ]

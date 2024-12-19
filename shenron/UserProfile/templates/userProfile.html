@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#  <title>Document</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#</body>#}
+{#</html>#}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Shenron }}</title>
+    <link rel="stylesheet" href="{% static 'userProfile.css' %}">
+  </head>
+  <body>
+
+
+    <div class="header-container">
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
+
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          <a href="{% url 'user_reviews' %}">Reviews</a>
+          </nav>
+          <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
+            {% if user.is_authenticated %}
+            <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+            {% else %}
+            <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+            {% endif %}</div>
+      </header>
+    </div>
+
+
+    <div class="container">
+      <div class="profile-container">
+
+        <h1 class="profile-title">Shenron Profile</h1>
+
+            <div class="profile-section">
+                <img src="{% static 'logo/logo.png' %}" alt="Profile Image" class="profile-image">
+                <div class="profile-username">{{ username }}</div>
+
+            </div>
+    </div>
+
+
+    <div class="profile-info">
+
+            <div class="profile-email">{{ email }}</div>
+            <div class="profile-datejoined">{{ user.date_joined }}</div>
+
+    </div>
+    </div>
+  </body>

@@ -317,6 +317,13 @@ html, body {
     transform: translate(0, 5%);
   }
 
+
+.titlebutton a,
+.titlebutton a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .text-button a,
 .text-button a {
   color: inherit;

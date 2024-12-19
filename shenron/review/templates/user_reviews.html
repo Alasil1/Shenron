@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'user_reviews.css' %}">
+    <title>{{user.username}}'s Reviews</title>
+</head>
+<body>
+    <div class="header-container">
+      <header class="header">
+          <a href="{% url 'home' %}" class="logo">Shenron</a>
+
+          <nav class="navbar">
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'movies' %}">Movies</a>
+          <a href="{% url 'favourite_list' %}">Favourites</a>
+          <a href="{% url 'forum' %}">Forums</a>
+          <a href="{% url 'user_reviews' %}">Reviews</a>
+          </nav>
+          <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
+            <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+          </div>
+      </header>
+    </div>
+    <div class="reviews-container">
+        <h1>{{ user.username }}'s Reviews</h1>
+        <div class="reviews">
+            {% for review in reviews %}
+            <div class="review">
+                <h2>Title: {{ review.movie.title }}</h2>
+                <p>Plot: {{ review.plot }}/5</p>
+                <p>Acting: {{ review.acting }}/5</p>
+                <p>Pace: {{ review.pacing }}/5</p>
+                <p>Soundtrack: {{ review.music }}/5</p>
+                <p>Character Development: {{ review.character_development }}/5</p>
+                <p>Cinematography: {{ review.cinematography }}/5</p>
+                <p>Verbal review: {{ review.overall}}</p>
+                <p>Reviewed on: {{ review.created_at }}</p>
+            </div>
+            <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="remove-button">
+                <a href="{% url 'remove_review' review.movie.id %}" style="color: white; text-decoration: none;">Remove</a>
+            </button>
+          </form>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

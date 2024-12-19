@@ -28,6 +28,7 @@
           <a href="{% url 'movies' %}">Movies</a>
           <a href="{% url 'favourite_list' %}">Favourites</a>
           <a href="{% url 'forum' %}">Forums</a>
+          <a href="{% url 'user_reviews' %}">Reviews</a>
           </nav>
           <div><a href="{% url 'search' %}"><button class="button2">Search</button></a>
             {% if user.is_authenticated %}
@@ -36,7 +37,7 @@
             <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
             {% endif %}</div>
       </header>
-  </div>
+    </div>
     <div class="desktop">
       <div class="div">
 
@@ -59,7 +60,7 @@
                   </div>
                 </div>
                   <br>
-              <button class="titlebutton">{{ movie.title }}
+              <button class="titlebutton"><a href="{{movie.id}}/">{{ movie.title }}</a>
               </button>
           </div>
         </div><br><br><br><br>
