@@ -66,11 +66,25 @@
                         </li>
                     {% endfor %}
                 </ul>
-            {% if movie in user.favourites.movies.all %}
+            <h2>See what others think of this movie!</h2>
+            <div style="margin-top: 20px; margin-bottom: 20px; padding-top: 5px; padding-bottom: 5px;">
+                <a href="{% url 'movie_reviews' movie.id %}" class="btn btn-warning">{{ movie.title }} Reviews</a>
+            </div>
+            <h2>Want to add this movie to your favourites list</h2>
+            <div style="margin-top: 20px; margin-bottom: 20px; padding-top: 5px; padding-bottom: 5px;">
+                {% if movie in user.favourites.movies.all %}
                 <button class="btn btn-warning" disabled>Already in Favorites</button>
-            {% else %}
-                <a href="{% url 'add_to_favorites' movie.id %}" class="btn btn-warning">Add to Favorites</a>
-            {% endif %}
+                {% else %}
+                <a
+                        href="{% url 'add_to_favorites' movie.id %}"
+                        class="btn btn-warning"
+                        style="margin-top: 20px; margin-bottom: 20px; padding-top: 5px; padding-bottom: 5px;">Add to Favorites</a>
+                {% endif %}
+            </div>
+            <h2>Want to review this movie?</h2>
+            <div style="margin-top: 20px; margin-bottom: 20px; padding-top: 5px; padding-bottom: 5px;">
+                <a href="{% url 'create_review' movie.id %}" class="btn btn-warning">Review</a>
+            </div>
             </div>
         </div>
 

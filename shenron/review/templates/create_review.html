@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        body {
+            background-color: #222;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 300px;
+        }
+
+        input[type="text"],
+        select{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: white;
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #b00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        </style>
+    <title>Review {{ movie.title }}</title>
+</head>
+<body>
+    <h1>Review {{ movie.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Acting</h3>
+        <select name="acting" id="acting" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Plot</h3>
+        <select name="plot" id="plot" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Cinematography</h3>
+        <select name="cinematography" id="cinematography" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Music</h3>
+        <select name="music" id="music" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Pacing</h3>
+        <select name="pacing" id="pacing" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Character Development</h3>
+        <select name="character_development" id="character_development" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <h3>Overall</h3>
+        <input type="text" id="overall" name="overall" placeholder="Review" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

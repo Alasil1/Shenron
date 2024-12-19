@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Topic
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
 
 @login_required(login_url='login')
 def forum(request):
@@ -17,6 +18,7 @@ def forum(request):
             Topic.objects.create(name=name, createdby=request.user)
             return redirect('forum')
     return render(request, 'forum.html', {'topics': topics})
+
 
 @login_required(login_url='login')
 def topic_detail(request, topic_id):

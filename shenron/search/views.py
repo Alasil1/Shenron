@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from MoviePage.models import Movie
 from django.db.models import Case, When, Value, IntegerField
+from rest_framework.decorators import api_view
 
 def search(request):
     """

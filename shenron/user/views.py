@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import User
 from django.contrib.auth import login as auth_login, logout
+from rest_framework.decorators import api_view
 
 def create_user_view(request):
     """

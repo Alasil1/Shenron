@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'forum',
     'favourite_list',
     'search',
-    'UserProfile',
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
@@ -89,7 +88,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "movies",
         "USER": "root",
-        "PASSWORD": "cloudy123",
+        "PASSWORD": "MYSQL80202201502",
         "HOST": "localhost",
         "PORT": "3306",
     }
