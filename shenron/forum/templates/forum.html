@@ -26,13 +26,20 @@
       </header>
   </div>
     <h1>Forum</h1>
+    
     <ul>
         {% for topic in topics %}
             <li>
-    <a href="{% url 'topic_detail' topic.id %}">{{ topic.name }}</a>
-    - Created by {{ topic.createdby.username }}
-</li>
-        {% endfor %}
+        <a href="{% url 'topic_detail' topic.id %}">{{ topic.name }}</a>
+        - Created by {{ topic.createdby.username }}
+        {% if perms.forum.delete_topic or topic.createdby == user %}
+            <form method="post" action="{% url 'topic_detail' topic.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" name="delete_topic">Delete topic</button>
+            </form>
+        {% endif %}
+    </li>
+    {% endfor %}
     </ul>
 
     <h2>Create a New Topic</h2>

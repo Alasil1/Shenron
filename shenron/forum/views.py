@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Topic
 from django.contrib.auth.decorators import login_required
 
+
 @login_required(login_url='login')
 def forum(request):
     topics = Topic.objects.all()
@@ -19,6 +20,9 @@ def topic_detail(request, topic_id):
     topic = get_object_or_404(Topic, id=topic_id)
     posts = topic.posts.all()
     if request.method == 'POST':
+        if 'delete_topic' in request.POST and (topic.createdby == request.user or request.user.has_perm('forum.delete_topic')):
+            topic.delete()
+            return redirect('forum')
         title=request.POST.get('title')
         content=request.POST.get('content')
         if title and content:
@@ -38,10 +42,19 @@ def create_topic(request):
 def post_detail(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.all()
+    print(request.user.get_all_permissions())
     if request.method == 'POST':
-        if 'delete_post' in request.POST and post.author == request.user:
+        if 'delete_post' in request.POST and (post.author == request.user or request.user.has_perm('forum.delete_post')):
             post.delete()
             return redirect('forum')
+        if 'delete_comment' in request.POST:
+            comment_id = request.POST.get('comment_id')
+            comment = get_object_or_404(Comment, id=comment_id)
+
+            if comment.author == request.user or request.user.has_perm('forum.delete_comment'):
+                comment.delete()
+
+            return redirect('post_detail', post_id=post.id)
         comment= request.POST.get('comment')
         if comment:
             Comment.objects.create(content=comment, author=request.user, post=post)
@@ -65,7 +78,7 @@ def create_comment(request):
     posts = Post.objects.all()
     print(posts)
     if request.method == 'POST':
-        comment = request.POST.get('comment')
+        comment = request.POST.get('comment_id')
         post_id = request.POST.get('post')
         post = get_object_or_404(Post, id=post_id)
         Comment.objects.create(content=comment, author=request.user, post_id=post_id)

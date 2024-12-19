@@ -25,7 +25,7 @@ def create_user_view(request):
     return render(request, 'create_user.html')
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/shenron')
+        return redirect('/shenron') 
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']

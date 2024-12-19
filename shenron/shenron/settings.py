@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'forum',
     'favourite_list',
     'search',
+    'admin_moderator',
 ]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 'django.middleware.messages',
 ]
 
 ROOT_URLCONF = "shenron.urls"

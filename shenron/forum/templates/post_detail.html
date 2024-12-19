@@ -28,7 +28,7 @@
     <p>{{ post.content }}</p>
     <p>by {{ post.author }} on {{ post.created_at }}</p>
 
-    {% if post.author == user %}
+    {% if perms.forum.delete_post or post.author == user %}
         <form method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" name="delete_post">Delete Post</button>
@@ -38,9 +38,19 @@
     <h2>Comments</h2>
     <ul>
         {% for comment in comments %}
-            <li>{{ comment.content }} by {{ comment.author }}</li>
+            <li>
+                {{ comment.content }} - {{ comment.author.username }}
+                {% if perms.forum.delete_comment or comment.author == user %}
+                    <form method="post" action="{% url 'post_detail' post.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                        <button type="submit" name="delete_comment">Delete</button>
+                    </form>
+                {% endif %}
+            </li>
         {% endfor %}
     </ul>
+    
 
     <h2>Create a New Comment</h2>
     <form method="post">
