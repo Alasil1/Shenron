@@ -74,7 +74,6 @@ def post_detail(request, post_id):
         if 'delete_post' in request.POST and (post.author == request.user or request.user.has_perm('forum.delete_post')):
             post.delete()
             return redirect('forum')
-<<<<<<< HEAD
         if 'delete_comment' in request.POST:
             comment_id = request.POST.get('comment_id')
             comment = get_object_or_404(Comment, id=comment_id)
@@ -84,9 +83,6 @@ def post_detail(request, post_id):
 
             return redirect('post_detail', post_id=post.id)
         comment= request.POST.get('comment')
-=======
-        comment = request.POST.get('comment')
->>>>>>> 27f55bb87e699e06b04ccab47ca2037fb1858251
         if comment:
             Comment.objects.create(content=comment, author=request.user, post=post)
             return redirect('post_detail', post_id=post.id)
