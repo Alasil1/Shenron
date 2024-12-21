@@ -9,7 +9,7 @@ class UserProfileViewsTest(TestCase):
 
     def test_user_profile_view(self):
         response = self.client.get(reverse('profile'))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'test_user')
         self.assertContains(response, 't#t@gmail.com')
 
