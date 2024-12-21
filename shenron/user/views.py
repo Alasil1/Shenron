@@ -26,6 +26,7 @@ def create_user_view(request):
             return render(request, 'create_user.html',
                           {'error': 'Email is already taken. Please use a different email.'})
         user = User.CreateUser(username, password, email)
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
         auth_login(request, user)
         activateEmail(request, user, email)
         return redirect('/shenron')
@@ -39,6 +40,7 @@ def login(request):
         password = request.POST['password']
         user = User.Login(request, username, password)
         if user:
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, user)
             next_url = request.POST.get('next')
             if not next_url:

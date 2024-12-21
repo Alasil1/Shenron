@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Notifications</title>
+    <link rel="stylesheet" href="{% static 'notification.css' %}">
+</head>
+<body>
+    <div class="header-container">
+        <header class="header">
+            <a href="{% url 'home' %}" class="logo">Shenron</a>
+            <nav class="navbar">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'movies' %}">Movies</a>
+                <a href="{% url 'favourite_list' %}">Favourites</a>
+                <a href="{% url 'forum' %}">Forums</a>
+                <a href="{% url 'user_reviews' %}">Reviews</a>
+            </nav>
+            <div>
+                <a href="{% url 'search' %}"><button class="button2">Search</button></a>
+                {% if user.is_authenticated %}
+                    <a class="logout" href="{% url 'logout' %}"><button class="button2">log out</button></a>
+                {% else %}
+                    <a class="logout" href="{% url 'login' %}"><button class="button2">sign in</button></a>
+                {% endif %}
+            </div>
+        </header>
+    </div>
+    {% block content %}
+    <h1>Your Notifications</h1>
+    <ul>
+        {% if notifications %}
+            {% for notification in notifications %}
+            <li>
+                {{ notification.message }}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="notification_id" value="{{ notification.id }}">
+                    <button type="submit" name="mark_as_read">Mark as Read</button>
+                    <a href="{% url 'post_detail' notification.post.id %}">
+                        <button type="submit" name="go_to">Go to Post</button>
+                    </a>
+                </form>
+
+            </li>
+            {% endfor %}
+        {% else %}
+            <li>No new notifications.</li>
+        {% endif %}
+    </ul>
+    {% endblock %}
+</body>
+</html>

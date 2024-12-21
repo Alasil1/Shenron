@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import mysql.connector
 import os
+
+from plyer import notification
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,6 +80,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'notifications'
 ]
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -151,17 +155,17 @@ DATABASES = {
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "shenron",
+#         "NAME": "movies",
 #         "USER": "root",
-#         "PASSWORD": "412130",
+#         "PASSWORD": "omar3322",
 #         "HOST": "localhost",
 #         "PORT": "3306",
-#         'OPTIONS': {
-#             'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
-#             },
+#         # 'OPTIONS': {
+#         #     'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
+#         #     },
 #         }
 #     }
-# }
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net',
