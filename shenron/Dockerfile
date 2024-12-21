@@ -23,7 +23,8 @@ COPY . /app/
 COPY DigiCertGlobalRootCA.crt.pem /app/DigiCertGlobalRootCA.crt.pem
 
 # Expose port 8000 for the Django app
-EXPOSE 8000
+EXPOSE 80
 
 # Run the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "shenron.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "shenron.wsgi:application"]
+
