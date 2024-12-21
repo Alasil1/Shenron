@@ -11,3 +11,4 @@ PyJWT<2.0.0
 django-allauth>=0.50.0
 cryptography
 six
+Tools
