@@ -2,15 +2,9 @@ from django.db import models
 from django.conf import settings
 
 class Topic(models.Model):
-    """
-    Model representing a forum topic.
-
-    Attributes:
-        name (str): The name of the topic.
-        createdby (User): The user who created the topic.
-    """
     name = models.CharField(max_length=255)
     createdby = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    followers= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followed_topics')
 
     def __str__(self):
         """
@@ -21,16 +15,6 @@ class Topic(models.Model):
         return self.name
 
 class Post(models.Model):
-    """
-    Model representing a post in a forum topic.
-
-    Attributes:
-        title (str): The title of the post.
-        content (str): The content of the post.
-        author (User): The user who authored the post.
-        topic (Topic): The topic to which the post belongs.
-        created_at (datetime): The date and time when the post was created.
-    """
     title = models.CharField(max_length=255)
     content = models.TextField()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

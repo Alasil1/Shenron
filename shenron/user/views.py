@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 from tokens.tokens import account_activation_token
 
-
+User.backend = 'django.contrib.auth.backends.ModelBackend'
 def create_user_view(request):
     if request.user.is_authenticated:
         return redirect('/shenron')
@@ -26,11 +26,13 @@ def create_user_view(request):
             return render(request, 'create_user.html',
                           {'error': 'Email is already taken. Please use a different email.'})
         user = User.CreateUser(username, password, email)
+        User.backend = 'django.contrib.auth.backends.ModelBackend'
         auth_login(request, user)
         activateEmail(request, user, email)
         return redirect('/shenron')
     return render(request, 'create_user.html')
 
+User.backend = 'django.contrib.auth.backends.ModelBackend'
 def login(request):
     if request.user.is_authenticated:
         return redirect('/shenron') 
@@ -39,6 +41,7 @@ def login(request):
         password = request.POST['password']
         user = User.Login(request, username, password)
         if user:
+            User.backend = 'django.contrib.auth.backends.ModelBackend'
             auth_login(request, user)
             next_url = request.POST.get('next')
             if not next_url:

@@ -40,7 +40,7 @@
     <ul>
         {% for comment in comments %}
             <li>
-                {{ comment.content }} - {{ comment.author.username }}
+                {{ comment.content }} - {{ comment.author}}
                 {% if perms.forum.delete_comment or comment.author == user %}
                     <form method="post" action="{% url 'post_detail' post.id %}" style="display:inline;">
                         {% csrf_token %}

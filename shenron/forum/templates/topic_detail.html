@@ -34,7 +34,16 @@
             <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a> by {{ post.author }}</li>
         {% endfor %}
     </ul>
-
+    {% if user.is_authenticated %}
+    <form action="{% url 'topic_detail' topic.id %}" method="post">
+        {% csrf_token %}
+        {% if user in topic.followers.all %}
+            <button type="submit" name="follow" class="button2">Unfollow</button>
+        {% else %}
+            <button type="submit" name="follow" class="button2">Follow</button>
+        {% endif %}
+    </form>
+{% endif %}
     <h2>Create a New Post</h2>
     <form method="post">
         {% csrf_token %}
