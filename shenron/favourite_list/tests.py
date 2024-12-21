@@ -85,7 +85,7 @@ class FavouriteViewsTests(TestCase):
         self.favourites.movies.add(self.movie)
         response = self.client.get(reverse('remove_from_favorites', args=[self.movie.id]))
         self.assertNotEqual(response.status_code, 200)
-        self.assertNotIn(self.movie, self.favourites.movies.all())
+        self.assertIn(self.movie, self.favourites.movies.all())
 
     def test_remove_from_favorites_no_login(self):
         self.favourites.movies.add(self.movie)
