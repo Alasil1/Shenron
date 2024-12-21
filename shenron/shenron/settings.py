@@ -132,29 +132,13 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # cloud
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.mysql",
-#         "NAME": "shenron",
-#         "USER": "Alasil",
-#         "PASSWORD": "a_12:14B%9",
-#         "HOST": "shenron.mysql.database.azure.com",
-#         "PORT": "3306",
-#         'OPTIONS': {
-#             'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
-#             },
-#         }
-#     }
-# }
-
-# local
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "movies",
-        "USER": "root",
-        "PASSWORD": "omar3322",
-        "HOST": "localhost",
+        "NAME": "shenron",
+        "USER": "Alasil",
+        "PASSWORD": "a_12:14B%9",
+        "HOST": "shenron.mysql.database.azure.com",
         "PORT": "3306",
         'OPTIONS': {
             'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
@@ -162,6 +146,22 @@ DATABASES = {
         }
     }
 }
+
+# local
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "shenron",
+#         "USER": "root",
+#         "PASSWORD": "412130",
+#         "HOST": "localhost",
+#         "PORT": "3306",
+#         'OPTIONS': {
+#             'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
+#             },
+#         }
+#     }
+# }
 
 CSRF_TRUSTED_ORIGINS = [
     'https://shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net',

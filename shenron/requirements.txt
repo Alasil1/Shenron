@@ -7,3 +7,5 @@ mysql-connector-python
 gunicorn==20.1.0
 djangorestframework==3.14.0
 requests
+jwt
+PyJWT
