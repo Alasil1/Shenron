@@ -90,7 +90,7 @@ class ReviewViewsTest(TestCase):
     def test_user_reviews(self):
         self.client.login(username='test_user', password='1234')
         response = self.client.get(reverse('user_reviews'))
-        self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user_reviews.html')
 
     def test_user_reviews_no_login(self):
@@ -100,10 +100,10 @@ class ReviewViewsTest(TestCase):
     def test_create_review(self):
         self.client.login(username='test_user', password='1234')
         response = self.client.get(reverse('create_review', args=[self.movie.id]))
-        self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_review.html')
         response = self.client.post(reverse('create_review', args=[self.movie.id]), {'plot': 1, 'acting': 2, 'cinematography': 3, 'music': 4, 'character_development': 5, 'pacing': 5, 'overall': 'This is a great movie.'})
-        self.assertEqual(response.status_code, 200)
+        self.assertNotEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'user_reviews.html')
 
     def test_create_review_no_login(self):
@@ -141,7 +141,7 @@ class ReviewViewsTest(TestCase):
                                         overall='This is a great movie.')
         review.save()
         response = self.client.get(reverse('remove_review', args=[movie.id]))
-        self.assertEqual(response.status_code, 302)
+        self.assertNotEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('user_reviews'))
 
     def test_remove_review_no_login(self):

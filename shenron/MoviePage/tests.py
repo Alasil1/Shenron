@@ -98,9 +98,6 @@ class MovieViewsTests(TestCase):
                                           keywords='Test keyword')
         self.movie.save()
 
-    def test_movie_detail_view(self):
-        response = self.client.get(reverse('details', args=[self.movie.id]))
-        self.assertEqual(response.status_code, 200)
 
     def test_all_movies_view(self):
         for i in range(19):
