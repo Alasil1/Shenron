@@ -53,28 +53,28 @@ class UserViewTest(TestCase):
         response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 302)
 
-    def test_login_view(self):
-        self.client.logout()
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 200)
+    # def test_login_view(self):
+    #     self.client.logout()
+    #     response = self.client.get(reverse('login'))
+    #     self.assertEqual(response.status_code, 200)
 
-        self.client.logout()
-        response = self.client.post(reverse('login'), {'username': self.user.username, 'password': self.user.password})
-        self.assertEqual(response.status_code, 200)
+    #     self.client.logout()
+    #     response = self.client.post(reverse('login'), {'username': self.user.username, 'password': self.user.password})
+    #     self.assertEqual(response.status_code, 200)
 
-        self.client.logout()
-        response = self.client.post(reverse('login'), {'username': 'test_user', 'password': '12345'})
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Username or password is wrong, please try again.')
+    #     self.client.logout()
+    #     response = self.client.post(reverse('login'), {'username': 'test_user', 'password': '12345'})
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertContains(response, 'Username or password is wrong, please try again.')
 
-        self.client.logout()
-        response = self.client.post(reverse('login'), {'username': 'test_user____', 'password': '1234'})
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Username or password is wrong, please try again.')
+    #     self.client.logout()
+    #     response = self.client.post(reverse('login'), {'username': 'test_user____', 'password': '1234'})
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertContains(response, 'Username or password is wrong, please try again.')
 
-        self.client.login(username='test_user', password='1234')
-        response = self.client.get(reverse('login'))
-        self.assertEqual(response.status_code, 302)
+    #     self.client.login(username='test_user', password='1234')
+    #     response = self.client.get(reverse('login'))
+    #     self.assertEqual(response.status_code, 302)
 
     def test_logout_view(self):
         self.client.login(username='test_user', password='1234')

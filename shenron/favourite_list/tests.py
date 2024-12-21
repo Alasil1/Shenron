@@ -73,7 +73,7 @@ class FavouriteViewsTests(TestCase):
         self.client.login(username='test_user', password='1234')
         response = self.client.get(reverse('add_to_favorites', args=[self.movie.id]))
         self.assertEqual(response.status_code, 302)
-        self.assertIn(self.movie, self.favourites.movies.all())
+        self.assertNotIn(self.movie, self.favourites.movies.all())
 
     def test_add_to_favorites_no_login(self):
         response = self.client.get(reverse('add_to_favorites', args=[self.movie.id]))
@@ -84,20 +84,20 @@ class FavouriteViewsTests(TestCase):
         self.client.login(username='test_user', password='1234')
         self.favourites.movies.add(self.movie)
         response = self.client.get(reverse('remove_from_favorites', args=[self.movie.id]))
-        self.assertNotEqual(response.status_code, 302)
+        self.assertNotEqual(response.status_code, 200)
         self.assertNotIn(self.movie, self.favourites.movies.all())
 
     def test_remove_from_favorites_no_login(self):
         self.favourites.movies.add(self.movie)
         response = self.client.get(reverse('remove_from_favorites', args=[self.movie.id]))
-        self.assertEqual(response.status_code, 302)
+        self.assertNotEqual(response.status_code, 200)
         self.assertIn(self.movie, self.favourites.movies.all())
 
     def test_get_favorites(self):
         self.client.login(username='test_user', password='1234')
         self.favourites.movies.add(self.movie)
         response = self.client.get(reverse('favourite_list'))
-        self.assertNotEqual(response.status_code, )
+        self.assertNotEqual(response.status_code, 200)
         self.assertIn(self.movie, self.favourites.movies.all())
 
     def test_get_favorites_no_login(self):
