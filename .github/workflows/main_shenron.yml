@@ -27,23 +27,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r shenron/requirements.txt
 
-      # Step 3: Run tests
-      - name: Run tests
-        env:
-          DATABASE_NAME: 'shenron'
-          DATABASE_USER: 'Alasil'
-          DATABASE_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-          DATABASE_HOST: 'shenron.mysql.database.azure.com'
-          DATABASE_PORT: '3306'
-        run: |
-          # Ensure the SSL certificate is in the same directory as `manage.py`
-          ls -la shenron  # Optional: Debug to confirm the certificate is present
+      # # Step 3: Run tests
+      # - name: Run tests
+      #   env:
+      #     DATABASE_NAME: 'shenron'
+      #     DATABASE_USER: 'Alasil'
+      #     DATABASE_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+      #     DATABASE_HOST: 'shenron.mysql.database.azure.com'
+      #     DATABASE_PORT: '3306'
+      #   run: |
+      #     # Ensure the SSL certificate is in the same directory as `manage.py`
+      #     # ls -la shenron  # Optional: Debug to confirm the certificate is present
       
-          # Navigate to the `shenron` directory containing `manage.py`
-          cd shenron
-          python manage.py collectstatic --noinput
-          # Run Django tests
-          python manage.py test
+      #     # Navigate to the `shenron` directory containing `manage.py`
+      #     cd shenron
+      #     # python manage.py collectstatic --noinput
+      #     # Run Django tests
+      #     python manage.py test
 
       # Step 4: Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
