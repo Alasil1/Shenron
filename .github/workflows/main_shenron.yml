@@ -31,7 +31,7 @@ jobs:
         with:
           context: ./shenron  # Changed context to point to the shenron directory
           push: true
-          tags: shenron.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e88d1e9dc0e343acb6881d209616e1ee }}/django-web-app:${{ github.sha }}
+          tags: tags:shenron.azurecr.io/django-web-app:${{ github.sha }}
           file: ./shenron/Dockerfile  # Changed file path to point to the Dockerfile inside the shenron directory
 
   deploy:
