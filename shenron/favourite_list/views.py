@@ -1,8 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from rest_framework.decorators import api_view
-
 from .models import User, Movie, Favourites
 
 @login_required(login_url='login')
