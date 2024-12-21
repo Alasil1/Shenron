@@ -28,8 +28,15 @@ jobs:
 
       # Step 3: Run tests
       - name: Run tests
+        env:
+          DATABASE_NAME: 'shenron'
+          DATABASE_USER: 'Alasil'
+          DATABASE_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          DATABASE_HOST: 'shenron.mysql.database.azure.com'
+          DATABASE_PORT: '3306'
         run: |
-          python shenron/manage.py test
+          cd shenron
+          python manage.py test
 
       # Step 4: Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
