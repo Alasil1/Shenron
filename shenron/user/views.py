@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from django.contrib import messages
 from tokens.tokens import account_activation_token
 
-
+user.backend = 'django.contrib.auth.backends.ModelBackend'
 def create_user_view(request):
     if request.user.is_authenticated:
         return redirect('/shenron')
@@ -31,6 +31,7 @@ def create_user_view(request):
         return redirect('/shenron')
     return render(request, 'create_user.html')
 
+user.backend = 'django.contrib.auth.backends.ModelBackend'
 def login(request):
     if request.user.is_authenticated:
         return redirect('/shenron') 
