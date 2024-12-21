@@ -139,7 +139,7 @@ class ReviewViewsTest(TestCase):
         review.save()
         response = self.client.get(reverse('remove_review', args=[movie.id]))
         self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, redirect_to=redirect('user_reviews'))
+        self.assertRedirects(response, redirect('user_reviews'))
 
     def test_remove_review_no_login(self):
         response = self.client.get(reverse('remove_review', args=[self.movie.id]))
