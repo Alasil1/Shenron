@@ -35,9 +35,14 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           DATABASE_HOST: 'shenron.mysql.database.azure.com'
           DATABASE_PORT: '3306'
-          SSL_CERT: 'shenron/DigiCertGlobalRootCA.crt.pem' 
         run: |
+          # Ensure the SSL certificate is in the same directory as `manage.py`
+          ls -la shenron  # Optional: Debug to confirm the certificate is present
+      
+          # Navigate to the `shenron` directory containing `manage.py`
           cd shenron
+      
+          # Run Django tests
           python manage.py test
 
       # Step 4: Set up Docker Buildx for multi-platform builds
