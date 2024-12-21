@@ -26,7 +26,9 @@ jobs:
         
           python -m pip install --upgrade pip
           pip install -r shenron/requirements.txt
-
+      - name: Cleanup Test Database
+        run: |
+          mysql -h ${{ secrets.DATABASE_HOST }} -u ${{ secrets.DATABASE_USER }} -p${{ secrets.MYSQL_PASSWORD }} -e "DROP DATABASE IF EXISTS test_shenron_ci;"
       # Step 3: Run tests
       - name: Run tests
         env:
@@ -35,6 +37,7 @@ jobs:
           DATABASE_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           DATABASE_HOST: 'shenron.mysql.database.azure.com'
           DATABASE_PORT: '3306'
+          SSL_CERT_PATH: './shenron/DigiCertGlobalRootCA.crt.pem'
         run: |
           # Ensure the SSL certificate is in the same directory as `manage.py`
           # ls -la shenron  # Optional: Debug to confirm the certificate is present
@@ -43,7 +46,7 @@ jobs:
           cd shenron
           python manage.py collectstatic --noinput
           # Run Django tests
-          python manage.py test
+          python manage.py test --noinput --keepdb
 
       # Step 4: Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
