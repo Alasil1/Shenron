@@ -48,5 +48,5 @@ jobs:
         with:
           app-name: 'shenron'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9e4ee2ed901143df892d0b0b683c25e9 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile }}
           images: 'shenron.azurecr.io/django-web-app:${{ github.sha }}'
