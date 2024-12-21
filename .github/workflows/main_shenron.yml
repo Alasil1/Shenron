@@ -11,11 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-<<<<<<< HEAD
       # Step 1: Checkout code
-=======
 
->>>>>>> c291f3f94ec034a2e448b8c7b0e68e453c20343d
       - uses: actions/checkout@v4
 
       # Step 2: Set up Python environment and install dependencies
