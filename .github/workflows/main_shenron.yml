@@ -41,7 +41,7 @@ jobs:
       
           # Navigate to the `shenron` directory containing `manage.py`
           cd shenron
-          # python manage.py collectstatic --noinput
+          python manage.py collectstatic --noinput
           # Run Django tests
           python manage.py test
 
