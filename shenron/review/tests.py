@@ -3,6 +3,7 @@ from .models import Reviews
 from MoviePage.models import Movie
 from user.models import User
 from django.urls import reverse
+from django.shortcuts import redirect
 # Create your tests here.
 class ReviewsmodelTest(TestCase):
     def setUp(self):
