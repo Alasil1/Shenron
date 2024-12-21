@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import mysql.connector
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,9 +25,23 @@ SECRET_KEY = "django-insecure-&)=v+fh8&*@+b&k3cy&#1xl+-i-g(w6!q23x$z$20#@v&rs#v$
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
-ALLOWED_HOSTS = []
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_CACHE_ALIAS = 'default'
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#     }
+# }
+ALLOWED_HOSTS = [
+    'uaenorth-01.azurewebsites.net',        # Root domain
+    '.uaenorth-01.azurewebsites.net',
+    'shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net'       # All subdomains (leading dot)
+    '127.0.0.1',
+    'localhost',
+    '*'
+]
 
 
 # Application definition
@@ -52,17 +67,23 @@ INSTALLED_APPS = [
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
     # 'django.middleware.messages',
 ]
+# settings.py
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ROOT_URLCONF = "shenron.urls"
-
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 TEMPLATES = [
     {
@@ -87,6 +108,23 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# cloud
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "shenron",
+#         "USER": "Alasil",
+#         "PASSWORD": "a_12:14B%9",
+#         "HOST": "shenron.mysql.database.azure.com",
+#         "PORT": "3306",
+#         'OPTIONS': {
+#             'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
+#             },
+#         }
+#     }
+# }
+
+# local
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
@@ -95,9 +133,17 @@ DATABASES = {
         "PASSWORD": "412130",
         "HOST": "localhost",
         "PORT": "3306",
+        'OPTIONS': {
+            'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
+            },
+        }
     }
 }
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net',
+    # Add other trusted origins if needed
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -134,6 +180,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
