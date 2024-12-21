@@ -22,7 +22,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app/
 COPY DigiCertGlobalRootCA.crt.pem /app/DigiCertGlobalRootCA.crt.pem
 
-# Expose port 8000 for the Django app
 EXPOSE 80
 
 # Run the application using Gunicorn

@@ -141,7 +141,7 @@ DATABASES = {
         "HOST": "shenron.mysql.database.azure.com",
         "PORT": "3306",
         'OPTIONS': {
-            'ssl': {'ca': '/app/DigiCertGlobalRootCA.crt.pem'
+            'ssl': {'ca': os.path.join(BASE_DIR, 'DigiCertGlobalRootCA.crt.pem') 
             },
         }
     }
