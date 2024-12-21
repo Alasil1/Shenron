@@ -23,8 +23,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: https://shenron.azurecr.io/
-          username: ${{ secrets.SHENRON }}
-          password: ${{ secrets.AZURECR_PASSWORD }}
+          username: ${{ secrets.shenron }}
+          password: ${{ secrets.NPvM+jyHnxwsqnOQYBF+zArtnU6+yfIKtp1RWPc6w9+ACRDygmZw}}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
