@@ -1,6 +1,5 @@
 from django.core.checks import messages
 from django.shortcuts import redirect
-
 from tokens.models import UsedToken
 from .models import User
 from django.contrib.auth import login as auth_login, logout, get_user_model
