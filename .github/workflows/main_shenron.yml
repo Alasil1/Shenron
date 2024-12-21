@@ -23,8 +23,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: https://shenron.azurecr.io/
-          username: ${{ secrets.AzureAppService_ContainerUsername_e88d1e9dc0e343acb6881d209616e1ee }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_f5b7337681804c3086a4dce231dc1085 }}
+          username: ${{shenron}}
+          password: ${{ NPvM+jyHnxwsqnOQYBF+zArtnU6+yfIKtp1RWPc6w9+ACRDygmZw }}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
