@@ -28,5 +28,5 @@ urlpatterns = [
     path('review/', include('review.urls'), name='review'),
     path('search/', include("search.urls"), name='search'),
     path("", include('admin_moderator.urls')),
-    path('profile/', include("UserProfile.urls"), name='profile'),
+    path('profile/', include("UserProfile.urls")),
 ]
