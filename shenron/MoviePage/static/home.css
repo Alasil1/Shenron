@@ -11,6 +11,40 @@ html, body {
   padding: 0;
   background-color: #303030;
 }
+.messages {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.messages li {
+  background: #be123c;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+}
+
+.messages li.error {
+  background: #d9534f; /* Red */
+}
+
+.messages li.success {
+  background: #5cb85c; /* Green */
+}
+
+.messages li.info {
+  background: #5bc0de; /* Blue */
+}
+
+.messages li.warning {
+  background: #f0ad4e; /* Yellow */
+}
 
 .desktop {
   background-color: #303030;

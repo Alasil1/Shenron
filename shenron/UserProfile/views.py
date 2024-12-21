@@ -15,6 +15,8 @@ def emailHashing(email):
 # Create your views here.
 @login_required(login_url='login')
 def userProfile(request):
+    if not request.user.activated:
+        return redirect('activate_account')
     username = request.user.username
     email = request.user.email
     email = emailHashing(email)

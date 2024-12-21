@@ -15,6 +15,14 @@ import mysql.connector
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_FROM = 's-omar_yasser@zewailcity.edu.eg'
+EMAIL_HOST_USER = 's-omar_yasser@zewailcity.edu.eg'
+EMAIL_HOST_PASSWORD = 'xgln nble lnep tuuk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+PASSWORD_RESET_TIMEOUT = 600
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -28,7 +36,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 ALLOWED_HOSTS = []
 
-
+SITE_ID=1
 # Application definition
 # Add this line to specify the custom user model
 AUTH_USER_MODEL = 'user.User'
@@ -48,7 +56,22 @@ INSTALLED_APPS = [
     'favourite_list',
     'search',
     'admin_moderator',
+    'tokens',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        "AUTH_PARAMS":{'access_type':'online'},
+}
+}
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -58,7 +81,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # 'django.middleware.messages',
+    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = "shenron.urls"
@@ -90,9 +113,9 @@ WSGI_APPLICATION = "shenron.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "shenron",
+        "NAME": "movies",
         "USER": "root",
-        "PASSWORD": "412130",
+        "PASSWORD": "omar3322",
         "HOST": "localhost",
         "PORT": "3306",
     }
@@ -139,3 +162,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend","allauth.account.auth_backends.AuthenticationBackend",)
+
+LOGIN_REDIRECT_URL='/shenron'
+LOGOUT_REDIRECT_URL='/shenron'
