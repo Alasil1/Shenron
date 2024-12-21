@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="{% static 'home.css' %}">
   </head>
   <body>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
     <div class="desktop">
       <div class="div">
         <div class="example">Welcome to<br /><br />Shenron</div>

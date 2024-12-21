@@ -6,12 +6,8 @@ from rest_framework.decorators import api_view
 
 @login_required(login_url='login')
 def forum(request):
-    """
-    Display the forum topics and handle the creation of new topics.
-
-    :param request: The HTTP request object.
-    :return: Rendered HTML page with the list of topics.
-    """
+    if not request.user.activated:
+        return redirect('activate_account')
     topics = Topic.objects.all()
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -23,13 +19,8 @@ def forum(request):
 
 @login_required(login_url='login')
 def topic_detail(request, topic_id):
-    """
-    Display the details of a specific topic and handle the creation of new posts.
-
-    :param request: The HTTP request object.
-    :param topic_id: The ID of the topic to display.
-    :return: Rendered HTML page with the topic details and its posts.
-    """
+    if not request.user.activated:
+        return redirect('activate_account')
     topic = get_object_or_404(Topic, id=topic_id)
     posts = topic.posts.all()
     if request.method == 'POST':
@@ -45,12 +36,8 @@ def topic_detail(request, topic_id):
 
 @login_required(login_url='login')
 def create_topic(request):
-    """
-    Handle the creation of a new topic.
-
-    :param request: The HTTP request object.
-    :return: Redirect to the forum page or render the topic creation page.
-    """
+    if not request.user.activated:
+        return redirect('activate_account')
     if request.method == 'POST':
         name = request.POST.get('name')
         createdby = request.user
@@ -60,13 +47,8 @@ def create_topic(request):
 
 @login_required(login_url='login')
 def post_detail(request, post_id):
-    """
-    Display the details of a specific post and handle the creation of new comments.
-
-    :param request: The HTTP request object.
-    :param post_id: The ID of the post to display.
-    :return: Rendered HTML page with the post details and its comments.
-    """
+    if not request.user.activated:
+        return redirect('activate_account')
     post = get_object_or_404(Post, id=post_id)
     comments = post.comments.all()
     print(request.user.get_all_permissions())
@@ -90,12 +72,6 @@ def post_detail(request, post_id):
 
 @login_required(login_url='login')
 def create_post(request):
-    """
-    Handle the creation of a new post.
-
-    :param request: The HTTP request object.
-    :return: Redirect to the forum page or render the post creation page.
-    """
     topics = Topic.objects.all()
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -108,12 +84,6 @@ def create_post(request):
 
 @login_required(login_url='login')
 def create_comment(request):
-    """
-    Handle the creation of a new comment.
-
-    :param request: The HTTP request object.
-    :return: Redirect to the post detail page or render the comment creation page.
-    """
     posts = Post.objects.all()
     if request.method == 'POST':
         comment = request.POST.get('comment_id')

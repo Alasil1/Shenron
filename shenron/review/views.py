@@ -7,16 +7,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 @login_required(login_url='login')
 def user_reviews(request):
-    """
-    Display the user's reviews.
-
-    :param request: The HTTP request object.
-    :return: Rendered HTML page with the user's reviews.
-    """
+    if not request.user.activated:
+        return redirect('activate_account')
     return render(request, 'user_reviews.html', {'user': request.user, 'reviews': request.user.reviews.all()})
 
 @login_required(login_url='login')
 def create_review(request, movie_id):
+    if not request.user.activated:
+        return redirect('activate_account')
     if Reviews.objects.filter(user=request.user, movie=Movie.objects.get(id=movie_id)).exists():
         return render(request, 'user_reviews.html', {'user': request.user, 'reviews': request.user.reviews.all()})
     if request.method == 'POST':
@@ -34,6 +32,8 @@ def create_review(request, movie_id):
 
 @login_required(login_url='login')
 def remove_review(request, movie_id):
+    if not request.user.activated:
+        return redirect('activate_account')
     review = Reviews.objects.get(user=request.user, movie=Movie.objects.get(id=movie_id))
     review.delete()
     return redirect('user_reviews')
