@@ -59,9 +59,10 @@ def logout_view(request):
 
 def activateEmail(request, user, to_email):
     mail_subject = 'Activate your user account.'
+    domain = 'shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net'
     message = render_to_string('template_activate_account.html', {
         'user': user.username,
-        'domain': get_current_site(request).domain,
+        'domain': domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
         'protocol': 'https' if request.is_secure() else 'http'
@@ -107,9 +108,10 @@ def request_forget_password(request):
         user=User.objects.filter(email=email).first()
         if User.objects.filter(email=email).exists():
             mail_subject = 'Reset your password'
+            domain = 'shenron-brfqhncsc4fmb6bu.uaenorth-01.azurewebsites.net'
             message = render_to_string('forget_password_mail.html', {
                 'user': user.username,
-                'domain': get_current_site(request).domain,
+                'domain': domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
                 'protocol': 'https' if request.is_secure() else 'http'

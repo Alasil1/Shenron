@@ -146,8 +146,8 @@ body {
 }
 
 .reviews-container {
-    background-color: #333; /* Dark background */
-    color: #fff; /* White text color */
+    background-color: #333;
+    color: #fff;
     padding: 20px;
     border-radius: 10px;
     width: 80%;
@@ -161,14 +161,14 @@ body {
 }
 
 .review {
-    background-color: #444; /* Slightly lighter dark background */
+    background-color: #444;
     padding: 15px;
     border-radius: 5px;
-    border-left: 5px solid #BE123C; /* Red accent */
+    border-left: 5px solid #BE123C;
 }
 
 .review h2 {
-    color: #BE123C; /* Red color for the title */
+    color: #BE123C;
 }
 
 .review p {
@@ -176,8 +176,8 @@ body {
 }
 
 .remove-button {
-    background-color: #BE123C; /* Red background */
-    color: #fff; /* White text color */
+    background-color: #BE123C;
+    color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -186,13 +186,13 @@ body {
 }
 
 .remove-button:hover {
-    background-color: #A10E32; /* Darker red on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    background-color: #A10E32;
+    transform: scale(1.05);
 }
 
 .remove-button:active {
-    background-color: #8B0C2A; /* Even darker red on click */
-    transform: scale(0.95); /* Slightly shrink on click */
+    background-color: #8B0C2A;
+    transform: scale(0.95);
 }
 
 .hamburger-menu {
@@ -219,7 +219,7 @@ body {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;; /* Adjust to match alignment with the hamburger icon */
+  top: 100%;;
   right: 0;
   background-color: #2c2c2c;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);

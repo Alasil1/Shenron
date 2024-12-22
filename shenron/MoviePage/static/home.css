@@ -31,19 +31,19 @@ html, body {
 }
 
 .messages li.error {
-  background: #d9534f; /* Red */
+  background: #d9534f;
 }
 
 .messages li.success {
-  background: #5cb85c; /* Green */
+  background: #5cb85c;
 }
 
 .messages li.info {
-  background: #5bc0de; /* Blue */
+  background: #5bc0de;
 }
 
 .messages li.warning {
-  background: #f0ad4e; /* Yellow */
+  background: #f0ad4e;
 }
 
 .desktop {
