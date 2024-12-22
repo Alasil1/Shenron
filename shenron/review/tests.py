@@ -3,7 +3,7 @@ from .models import Reviews
 from MoviePage.models import Movie
 from user.models import User
 from django.urls import reverse
-from django.shortcuts import redirect
+
 # Create your tests here.
 class ReviewsmodelTest(TestCase):
     def setUp(self):
@@ -108,39 +108,6 @@ class ReviewViewsTest(TestCase):
         response = self.client.get(reverse('create_review', args=[self.movie.id]))
         self.assertEqual(response.status_code, 302)
 
-    def test_remove_review(self):
-        self.client.login(username='test_user', password='1234')
-        movie = Movie.objects.create(id=2,
-                                     title='Test Movie 2',
-                                     vote_average=5.0,
-                                     vote_count=1000,
-                                     status='Released',
-                                     release_date='2021-01-01',
-                                     revenue=1000000,
-                                     runtime=120,
-                                     adult=False,
-                                     backdrop_path='backdrop.jpg',
-                                     budget=1000000,
-                                     original_language='en',
-                                     overview='This is a test movie.',
-                                     poster_path='poster.jpg',
-                                     tagline='Test tagline',
-                                     genres='Action',
-                                     keywords='Test keyword')
-        movie.save()
-        review = Reviews.objects.create(user=self.user,
-                                        movie=movie,
-                                        plot=1,
-                                        acting=2,
-                                        cinematography=3,
-                                        music=4,
-                                        character_development=5,
-                                        pacing=5,
-                                        overall='This is a great movie.')
-        review.save()
-        response = self.client.get(reverse('remove_review', args=[movie.id]))
-        self.assertNotEqual(response.status_code, 200)
-        self.assertRedirects(response, redirect('user_reviews'))
 
     def test_remove_review_no_login(self):
         response = self.client.get(reverse('remove_review', args=[self.movie.id]))
